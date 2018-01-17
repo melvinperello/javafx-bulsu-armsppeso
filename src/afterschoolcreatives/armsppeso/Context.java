@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import javafx.scene.image.Image;
 
 /**
+ * A Class that manages the resources of the project.
  *
  * @author Jhon Melvin
  */

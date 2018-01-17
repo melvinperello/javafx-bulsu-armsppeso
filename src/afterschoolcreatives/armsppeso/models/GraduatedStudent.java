@@ -2,6 +2,7 @@ package afterschoolcreatives.armsppeso.models;
 
 import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
+import afterschoolcreatives.polaris.java.sql.DataSet;
 import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
 import java.util.Date;
@@ -152,6 +153,45 @@ public class GraduatedStudent {
     }
 
     //--------------------------------------------------------------------------
+    // Static Methods.
+    //--------------------------------------------------------------------------
+    /**
+     * Deletes an entry from GraduatedStudent Table using the primary key.
+     *
+     * @param id
+     * @return
+     */
+    public static boolean delete(Integer id) {
+        SimpleQuery deleteQuery = new SimpleQuery();
+        String query = "DELETE FROM `graduated_students` WHERE `_rowid_` IN (?);";
+        deleteQuery.addStatementWithParameter(query, id);
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            con.update(deleteQuery);
+            return true;
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Get the total number of records.
+     *
+     * @return
+     */
+    public static String getTotalRecords() {
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            final String countStudent = "SELECT COUNT(*) as count FROM (SELECT `_rowid_`,* FROM `graduated_students` ORDER BY `_rowid_` ASC);";
+            DataSet student_ds = con.fetch(countStudent);
+            // store values
+            String student_count = student_ds.get(0).getValue("count").toString();
+            return student_count;
+        } catch (SQLException sqlEx) {
+            throw new RuntimeException("Cannot get count.", sqlEx);
+        }
+    }
+
+    //--------------------------------------------------------------------------
     // Class Methods.
     //--------------------------------------------------------------------------
     /**
@@ -194,25 +234,6 @@ public class GraduatedStudent {
         );
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             con.update(insertQuery);
-            return true;
-        } catch (SQLException sqlEx) {
-            sqlEx.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
-     * Deletes an entry from GraduatedStudent Table using the primary key.
-     *
-     * @param id
-     * @return
-     */
-    public static boolean delete(Integer id) {
-        SimpleQuery deleteQuery = new SimpleQuery();
-        String query = "DELETE FROM `graduated_students` WHERE `_rowid_` IN (?);";
-        deleteQuery.addStatementWithParameter(query, id);
-        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
-            con.update(deleteQuery);
             return true;
         } catch (SQLException sqlEx) {
             sqlEx.printStackTrace();

@@ -72,6 +72,8 @@ public class ARMSPPESO extends Application {
         primaryStage.setResizable(true);
         primaryStage.setTitle("Automated Record Management System of Public Placement and Employment Service Office");
         primaryStage.getIcons().add(Context.app().getDrawableImage("app_icon.png"));
+        // maximized
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
     

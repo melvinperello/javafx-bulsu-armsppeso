@@ -1,6 +1,8 @@
 package afterschoolcreatives.armsppeso.ui;
 
 import afterschoolcreatives.armsppeso.Context;
+import afterschoolcreatives.armsppeso.models.CompanyProfile;
+import afterschoolcreatives.armsppeso.models.GraduatedStudent;
 import afterschoolcreatives.polaris.javafx.FXController;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import afterschoolcreatives.polaris.java.sql.DataSet;
@@ -50,21 +52,10 @@ public class MainMenu extends FXController {
     }
 
     private void countRecords() {
-        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
-            final String countStudent = "SELECT COUNT(*) as count FROM (SELECT `_rowid_`,* FROM `graduated_students` ORDER BY `_rowid_` ASC);";
-            final String countProfile = "SELECT COUNT(*) as count FROM (SELECT `_rowid_`,* FROM `company_profile` ORDER BY `_rowid_` ASC);";
-            DataSet student_ds = con.fetch(countStudent);
-            DataSet profile_ds = con.fetch(countProfile);
-            // store values
-            String student_count = student_ds.get(0).getValue("count").toString();
-            String profile_count = profile_ds.get(0).getValue("count").toString();
-            // set values
-            this.lblStudentCount.setText(student_count);
-            this.lblProfileCount.setText(profile_count);
 
-        } catch (SQLException sqlEx) {
-            sqlEx.printStackTrace();
-        }
+        this.lblStudentCount.setText(GraduatedStudent.getTotalRecords());
+        this.lblProfileCount.setText(CompanyProfile.getTotalRecords());
+
     }
 
 }

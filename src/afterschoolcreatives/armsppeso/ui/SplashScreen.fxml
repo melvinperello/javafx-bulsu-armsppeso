@@ -12,7 +12,8 @@
             <Image url="@../../../res/drawable/splash_screen.png" />
          </image>
       </ImageView>
-      <Label layoutX="23.0" layoutY="350.0" text=" Automated Record Management System of Public Placement and Employment Service Office" textFill="WHITE" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="345.0" />
-      <Label layoutX="26.0" layoutY="365.0" text="Copyright (C) 2018 Afterschool Creatives, Jhon Melvin Perello" textFill="WHITE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="360.0" />
+      <Label layoutX="23.0" layoutY="350.0" text=" Automated Record Management System of Public Placement and Employment Service Office" textFill="WHITE" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="335.0" />
+      <Label layoutX="26.0" layoutY="365.0" text="Copyright (C) 2018 Afterschool Creatives" textFill="WHITE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="350.0" />
+      <Label layoutX="36.0" layoutY="375.0" text="JHON MELVIN PERELLO, JOEMAR DE LA CRUZ, ERICKA JOY DELA CRUZ" textFill="WHITE" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="365.0" />
    </children>
 </AnchorPane>

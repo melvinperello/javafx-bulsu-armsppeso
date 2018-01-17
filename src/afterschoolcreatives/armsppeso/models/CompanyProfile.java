@@ -2,6 +2,7 @@ package afterschoolcreatives.armsppeso.models;
 
 import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
+import afterschoolcreatives.polaris.java.sql.DataSet;
 import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
 import java.util.Date;
@@ -116,6 +117,45 @@ public class CompanyProfile {
     }
 
     //--------------------------------------------------------------------------
+    // Static Methods.
+    //--------------------------------------------------------------------------
+    /**
+     * Deletes an entry from Company Profile Table using the primary key.
+     *
+     * @param id
+     * @return
+     */
+    public static boolean delete(Integer id) {
+        SimpleQuery deleteQuery = new SimpleQuery();
+        String query = "DELETE FROM `company_profile` WHERE `_rowid_` IN (?);";
+        deleteQuery.addStatementWithParameter(query, id);
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            con.update(deleteQuery);
+            return true;
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Get the total number of records.
+     *
+     * @return
+     */
+    public static String getTotalRecords() {
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            final String countProfile = "SELECT COUNT(*) as count FROM (SELECT `_rowid_`,* FROM `company_profile` ORDER BY `_rowid_` ASC);";
+            DataSet profile_ds = con.fetch(countProfile);
+            // store values
+            String profile_count = profile_ds.get(0).getValue("count").toString();
+            return profile_count;
+        } catch (SQLException sqlEx) {
+            throw new RuntimeException("Cannot get count.", sqlEx);
+        }
+    }
+
+    //--------------------------------------------------------------------------
     // Class Methods.
     //--------------------------------------------------------------------------
     /**
@@ -154,25 +194,6 @@ public class CompanyProfile {
         );
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             con.update(insertQuery);
-            return true;
-        } catch (SQLException sqlEx) {
-            sqlEx.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
-     * Deletes an entry from Company Profile Table using the primary key.
-     *
-     * @param id
-     * @return
-     */
-    public static boolean delete(Integer id) {
-        SimpleQuery deleteQuery = new SimpleQuery();
-        String query = "DELETE FROM `company_profile` WHERE `_rowid_` IN (?);";
-        deleteQuery.addStatementWithParameter(query, id);
-        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
-            con.update(deleteQuery);
             return true;
         } catch (SQLException sqlEx) {
             sqlEx.printStackTrace();

@@ -1,7 +1,9 @@
 package afterschoolcreatives.armsppeso;
 
+import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
 import afterschoolcreatives.armsppeso.ui.MainMenu;
 import afterschoolcreatives.armsppeso.ui.SplashScreen;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -25,7 +27,7 @@ public class ARMSPPESO extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
+
         SplashScreen ss = new SplashScreen();
         Pane root = ss.load();
 
@@ -38,7 +40,7 @@ public class ARMSPPESO extends Application {
         splashStage.setScene(splashScene);
         splashStage.centerOnScreen();
         splashStage.show();
-        
+
         Thread splashWaitingThread = new Thread(() -> {
             try {
                 Thread.sleep(3000); // show splash screen for 3 seconds
@@ -76,9 +78,9 @@ public class ARMSPPESO extends Application {
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

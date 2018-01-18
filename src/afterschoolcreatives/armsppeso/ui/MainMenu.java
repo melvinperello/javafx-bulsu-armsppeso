@@ -1,9 +1,9 @@
 package afterschoolcreatives.armsppeso.ui;
 
 import afterschoolcreatives.armsppeso.Context;
-import afterschoolcreatives.armsppeso.models.CompanyProfile;
-import afterschoolcreatives.armsppeso.models.GraduatedStudent;
-import afterschoolcreatives.polaris.javafx.FXController;
+import afterschoolcreatives.armsppeso.models.CompanyProfileModel;
+import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
+import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import afterschoolcreatives.polaris.java.sql.DataSet;
 import com.jfoenix.controls.JFXButton;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
  *
  * @author Jhon Melvin
  */
-public class MainMenu extends FXController {
+public class MainMenu extends PolarisFxController {
 
     @FXML
     private Label lblStudentCount;
@@ -53,8 +53,8 @@ public class MainMenu extends FXController {
 
     private void countRecords() {
 
-        this.lblStudentCount.setText(GraduatedStudent.getTotalRecords());
-        this.lblProfileCount.setText(CompanyProfile.getTotalRecords());
+        this.lblStudentCount.setText(GraduatedStudentModel.getTotalRecords());
+        this.lblProfileCount.setText(CompanyProfileModel.getTotalRecords());
 
     }
 

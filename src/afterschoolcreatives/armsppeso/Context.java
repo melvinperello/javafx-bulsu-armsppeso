@@ -71,14 +71,14 @@ public final class Context {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     }
 
-    /**
-     * Display Date Format November 22, 1997 09:08:16 PM.
-     *
-     * @return
-     */
-    public SimpleDateFormat getDisplayDateFormat() {
-        return new SimpleDateFormat("MMMMMMMMMMM dd,yyyy hh:mm:ss a");
-    }
+//    /**
+//     * Display Date Format November 22, 1997 09:08:16 PM.
+//     *
+//     * @return
+//     */
+//    public SimpleDateFormat getDisplayDateFormat() {
+//        return new SimpleDateFormat("MMMMMMMMMMM dd,yyyy hh:mm:ss a");
+//    }
 
     /**
      * Converts JavaFX Image from the drawable folder.

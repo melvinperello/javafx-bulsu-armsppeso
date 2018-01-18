@@ -1,12 +1,12 @@
 package afterschoolcreatives.armsppeso.ui;
 
-import afterschoolcreatives.polaris.javafx.FXController;
+import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 
 /**
  *
  * @author Jhon Melvin
  */
-public class SplashScreen extends FXController {
+public class SplashScreen extends PolarisFxController {
 
     @Override
     protected void setup() {

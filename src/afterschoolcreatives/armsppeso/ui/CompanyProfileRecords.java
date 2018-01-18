@@ -1,6 +1,6 @@
 package afterschoolcreatives.armsppeso.ui;
 
-import afterschoolcreatives.polaris.javafx.FXController;
+import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
  *
  * @author Jhon Melvin
  */
-public class CompanyProfileRecords extends FXController {
+public class CompanyProfileRecords extends PolarisFxController {
 
     @FXML
     private JFXButton btn_main_from_profile;

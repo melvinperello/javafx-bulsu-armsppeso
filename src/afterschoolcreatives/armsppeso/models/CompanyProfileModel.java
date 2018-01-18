@@ -11,25 +11,21 @@ import java.util.Date;
  *
  * @author Jhon Melvin
  */
-public class GraduatedStudent {
+public class CompanyProfileModel {
 
     private Integer id;
-    private String lastName;
-    private String firstName;
-    private String middleName;
-    private String course;
-    private Date graduationDate;
-    private Integer age;
-    private String email;
-    private String contact;
+    private String name;
     private String address;
+    private String email;
+    private String contactPerson;
+    private String contactNumber;
+    //
     private String createdBy;
     private Date createdDate;
     private String lastModifiedBy;
     private Date lastModifiedDate;
 
-    public GraduatedStudent() {
-        this.graduationDate = null;
+    public CompanyProfileModel() {
         this.createdDate = null;
         this.lastModifiedDate = null;
     }
@@ -41,40 +37,24 @@ public class GraduatedStudent {
         this.id = id;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    public void setGraduationDate(Date graduationDate) {
-        this.graduationDate = new Date(graduationDate.getTime());
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public void setCreatedBy(String createdBy) {
@@ -100,40 +80,24 @@ public class GraduatedStudent {
         return id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public Date getGraduationDate() {
-        return new Date(this.graduationDate.getTime());
-    }
-
-    public Integer getAge() {
-        return age;
+    public String getAddress() {
+        return address;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getContact() {
-        return contact;
+    public String getContactPerson() {
+        return contactPerson;
     }
 
-    public String getAddress() {
-        return address;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
     public String getCreatedBy() {
@@ -141,7 +105,7 @@ public class GraduatedStudent {
     }
 
     public Date getCreatedDate() {
-        return new Date(this.createdDate.getTime());
+        return new Date(createdDate.getTime());
     }
 
     public String getLastModifiedBy() {
@@ -149,21 +113,21 @@ public class GraduatedStudent {
     }
 
     public Date getLastModifiedDate() {
-        return new Date(this.lastModifiedDate.getTime());
+        return new Date(lastModifiedDate.getTime());
     }
 
     //--------------------------------------------------------------------------
     // Static Methods.
     //--------------------------------------------------------------------------
     /**
-     * Deletes an entry from GraduatedStudent Table using the primary key.
+     * Deletes an entry from Company Profile Table using the primary key.
      *
      * @param id
      * @return
      */
     public static boolean delete(Integer id) {
         SimpleQuery deleteQuery = new SimpleQuery();
-        String query = "DELETE FROM `graduated_students` WHERE `_rowid_` IN (?);";
+        String query = "DELETE FROM `company_profile` WHERE `_rowid_` IN (?);";
         deleteQuery.addStatementWithParameter(query, id);
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             con.update(deleteQuery);
@@ -181,11 +145,11 @@ public class GraduatedStudent {
      */
     public static String getTotalRecords() {
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
-            final String countStudent = "SELECT COUNT(*) as count FROM (SELECT `_rowid_`,* FROM `graduated_students` ORDER BY `_rowid_` ASC);";
-            DataSet student_ds = con.fetch(countStudent);
+            final String countProfile = "SELECT COUNT(*) as count FROM (SELECT `_rowid_`,* FROM `company_profile` ORDER BY `_rowid_` ASC);";
+            DataSet profile_ds = con.fetch(countProfile);
             // store values
-            String student_count = student_ds.get(0).getValue("count").toString();
-            return student_count;
+            String profile_count = profile_ds.get(0).getValue("count").toString();
+            return profile_count;
         } catch (SQLException sqlEx) {
             throw new RuntimeException("Cannot get count.", sqlEx);
         }
@@ -210,23 +174,19 @@ public class GraduatedStudent {
     }
 
     /**
-     * Inserts a new Graduated Student Record.
+     * Inserts a new Company Profile Record.
      *
      * @return true or false
      */
     public boolean insert() {
         SimpleQuery insertQuery = new SimpleQuery();
-        String query = "INSERT INTO `graduated_students`(`last_name`,`first_name`,`middle_name`,`course`,`graduation_date`,`age`,`email`,`contact`,`address`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO `company_profile`(`name`,`address`,`email`,`contact_person`,`contact_number`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`) VALUES (?,?,?,?,?,?,?,?,?);";
         insertQuery.addStatementWithParameter(query,
-                this.lastName,
-                this.firstName,
-                this.middleName,
-                this.course,
-                this.convertDateToStorageString(this.graduationDate),
-                this.age,
-                this.email,
-                this.contact,
+                this.name,
                 this.address,
+                this.email,
+                this.contactPerson,
+                this.contactNumber,
                 this.createdBy,
                 this.convertDateToStorageString(this.createdDate),
                 this.lastModifiedBy,
@@ -242,7 +202,7 @@ public class GraduatedStudent {
     }
 
     /**
-     * Update entries of the the graduated student table.
+     * Update entries of the the company profile table.
      *
      * @return
      */
@@ -251,15 +211,11 @@ public class GraduatedStudent {
         updateQuery.addStatement("UPDATE") // operation
                 .addStatement("graduated_students") // table
                 // fields here
-                .addStatementWithParameter("SET last_name = ?,", this.lastName)
-                .addStatementWithParameter("first_name = ?,", this.firstName)
-                .addStatementWithParameter("middle_name = ?,", this.middleName)
-                .addStatementWithParameter("course = ?,", this.course)
-                .addStatementWithParameter("graduation_date = ?,", this.convertDateToStorageString(this.graduationDate))
-                .addStatementWithParameter("age = ?,", this.age)
-                .addStatementWithParameter("email = ?,", this.email)
-                .addStatementWithParameter("contact = ?,", this.contact)
-                .addStatementWithParameter("address = ?,", this.address)
+                .addStatementWithParameter("SET name = ?,", this.name)
+                .addStatementWithParameter("SET address = ?,", this.address)
+                .addStatementWithParameter("SET email = ?,", this.email)
+                .addStatementWithParameter("SET contact_person = ?,", this.contactPerson)
+                .addStatementWithParameter("SET contact_number = ?,", this.contactNumber)
                 .addStatementWithParameter("created_by = ?,", this.createdBy)
                 .addStatementWithParameter("created_date = ?,", this.convertDateToStorageString(this.createdDate))
                 .addStatementWithParameter("last_modified_by = ?,", this.lastModifiedBy)

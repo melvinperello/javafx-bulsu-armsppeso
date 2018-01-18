@@ -95,13 +95,13 @@ public class GraduatedStudentModel {
     }
 
     public void setLastModifiedBy(String lastModifiedBy) {
-        if (lastModifiedBy == null) {
-            return;
-        }
         this.lastModifiedBy = lastModifiedBy;
     }
 
     public void setLastModifiedDate(Date lastModifiedDate) {
+        if (lastModifiedDate == null) {
+            return;
+        }
         this.lastModifiedDate = new Date(lastModifiedDate.getTime());
     }
 

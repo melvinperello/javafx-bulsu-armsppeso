@@ -1,10 +1,11 @@
 package afterschoolcreatives.armsppeso.ui;
 
-import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
 import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import com.jfoenix.controls.JFXButton;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,106 +21,151 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author Jhon Melvin
  */
 public class GraduateStudentRecords extends PolarisFxController {
-
+    
     @FXML
     private TextField txt_search;
-
+    
     @FXML
     private JFXButton btn_main_from_student;
-
+    
     @FXML
     private TableView tbl_information;
-
+    
     @FXML
     private TextField txt_last_name;
-
+    
     @FXML
     private TextField txt_first_name;
-
+    
     @FXML
     private TextField txt_middle_name;
-
+    
     @FXML
     private TextField txt_course;
-
+    
     @FXML
     private TextField txt_graduation_date;
-
+    
     @FXML
     private TextField txt_age;
-
+    
     @FXML
     private TextField txt_email;
-
+    
     @FXML
     private TextField txt_contact;
-
+    
     @FXML
     private TextField txt_address;
-
+    
     @FXML
     private Label lbl_created;
-
+    
     @FXML
     private Label lbl_updated;
-
+    
     @FXML
     private JFXButton btn_add_record;
-
+    
     @FXML
     private JFXButton btn_update_record;
-
+    
     @FXML
     private JFXButton btn_delete_record;
 
+    /**
+     * Construct.
+     */
     public GraduateStudentRecords() {
         this.tableData = FXCollections.observableArrayList();
     }
 
+    /**
+     * Contains the data of the table.
+     */
     private final ObservableList<GraduateStudentTableRow> tableData;
-
+    
     @Override
     protected void setup() {
         this.createTable();
         this.populateTable(); //refresh
 
+        // back to main menu
         this.btn_main_from_student.setOnMouseClicked(click -> {
             MainMenu mm = new MainMenu();
             this.changeRoot(mm.load());
             click.consume();
         });
-
+        
         this.btn_add_record.setOnMouseClicked(click -> {
-
+            this.insertNew();
         });
     }
+    
+    private void insertNew() {
+        GraduatedStudentModel student = new GraduatedStudentModel();
+        student.setLastName(this.getTextString(this.txt_last_name));
+        student.setFirstName(this.getTextString(this.txt_first_name));
+        student.setMiddleName(this.getTextString(this.txt_middle_name));
+        //
+        student.setCourse(this.getTextString(this.txt_course));
+        try {
+            SimpleDateFormat insertionFormat = new SimpleDateFormat("MM/dd/yyyy");
+            student.setGraduationDate(insertionFormat.parse(this.getTextString(this.txt_graduation_date)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        student.setAge(Integer.valueOf(this.getTextString(this.txt_age)));
+        student.setEmail(this.getTextString(this.txt_email));
+        student.setContact(this.getTextString(this.txt_contact));
+        student.setAddress(this.getTextString(this.txt_address));
+        // created
+        // modified
+        student.insert();
+        // refresh table
+        this.populateTable();
+    }
 
+    /**
+     * Gets the text from the text field and removes extra spaces in between.
+     *
+     * @param textfield
+     * @return
+     */
+    private String getTextString(TextField textfield) {
+        return textfield.getText().toUpperCase(Locale.ENGLISH).trim().replaceAll("\\s+", " ");
+    }
+    
     private void createTable() {
         TableColumn fullNameCol = new TableColumn("Full Name");
         fullNameCol.setPrefWidth(250.0);
         fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-
+        
         TableColumn courseCol = new TableColumn("Course");
         courseCol.setPrefWidth(150.0);
         courseCol.setCellValueFactory(new PropertyValueFactory<>("course"));
-
+        
         TableColumn graduationDate = new TableColumn("Graduated");
         graduationDate.setPrefWidth(150.0);
         graduationDate.setCellValueFactory(new PropertyValueFactory<>("graduationDate"));
-
+        
         TableColumn ageCol = new TableColumn("Age");
         ageCol.setPrefWidth(100.0);
         ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
-
+        
         TableColumn addressCol = new TableColumn("Address");
         addressCol.setPrefWidth(300.0);
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-
+        
         this.tbl_information.setItems(this.tableData);
         this.tbl_information.getColumns().addAll(fullNameCol, courseCol, graduationDate, ageCol, addressCol);
     }
 
+    /**
+     * Refreshes the contents of the table.
+     */
     private void populateTable() {
+        this.tableData.clear(); // clear
         ArrayList<GraduatedStudentModel> students = GraduatedStudentModel.getAllRecords();
         students.forEach(student -> {
             GraduateStudentTableRow gsRow = new GraduateStudentTableRow();
@@ -130,7 +176,8 @@ public class GraduateStudentRecords extends PolarisFxController {
             gsRow.setCourse(student.getCourse());
             String graduationDate = "";
             if (student.getGraduationDate() != null) {
-                graduationDate = Context.app().getStandardDateFormat().format(student.getGraduationDate());
+                SimpleDateFormat gradFormat = new SimpleDateFormat("MM-dd-yyyy");
+                graduationDate = gradFormat.format(student.getGraduationDate());
             }
             gsRow.setGraduationDate(graduationDate);
             gsRow.setAddress(student.getAddress());
@@ -144,12 +191,15 @@ public class GraduateStudentRecords extends PolarisFxController {
         });
     }
 
+    //--------------------------------------------------------------------------
+    // Table Data Row.
+    //--------------------------------------------------------------------------
     /**
      * Object Class Representing the Data of the Table in displaying the
      * Graduated Students.
      */
     public static class GraduateStudentTableRow {
-
+        
         private final SimpleStringProperty course;
         private final SimpleStringProperty graduationDate;
         private final SimpleStringProperty age;
@@ -184,19 +234,19 @@ public class GraduateStudentRecords extends PolarisFxController {
         public String getFullName() {
             return this.lastName.get() + ", " + this.firstName.get() + " " + this.middleName.get();
         }
-
+        
         public String getCourse() {
             return course.get();
         }
-
+        
         public String getGraduationDate() {
             return graduationDate.get();
         }
-
+        
         public String getAge() {
             return age.get();
         }
-
+        
         public String getAddress() {
             return address.get();
         }
@@ -211,7 +261,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.course.set(course);
         }
-
+        
         public void setGraduationDate(String graduationDate) {
             if (graduationDate == null) {
                 this.graduationDate.set("");
@@ -219,7 +269,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.graduationDate.set(graduationDate);
         }
-
+        
         public void setAge(String age) {
             if (age == null) {
                 this.age.set("");
@@ -227,7 +277,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.age.set(age);
         }
-
+        
         public void setAddress(String address) {
             if (address == null) {
                 this.address.set("");
@@ -235,7 +285,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.address.set(address);
         }
-
+        
         public void setLastName(String lastName) {
             if (lastName == null) {
                 this.lastName.set("");
@@ -243,7 +293,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.lastName.set(lastName);
         }
-
+        
         public void setFirstName(String firstName) {
             if (firstName == null) {
                 this.firstName.set("");
@@ -251,7 +301,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.firstName.set(firstName);
         }
-
+        
         public void setMiddleName(String middleName) {
             if (middleName == null) {
                 this.middleName.set("");
@@ -259,7 +309,7 @@ public class GraduateStudentRecords extends PolarisFxController {
             }
             this.middleName.set(middleName);
         }
-
+        
     }
-
+    
 }

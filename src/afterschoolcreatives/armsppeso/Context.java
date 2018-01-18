@@ -79,7 +79,6 @@ public final class Context {
 //    public SimpleDateFormat getDisplayDateFormat() {
 //        return new SimpleDateFormat("MMMMMMMMMMM dd,yyyy hh:mm:ss a");
 //    }
-
     /**
      * Converts JavaFX Image from the drawable folder.
      *

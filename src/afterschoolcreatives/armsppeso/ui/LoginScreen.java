@@ -80,23 +80,25 @@ public class LoginScreen extends PolarisFxController {
             // system account
             if(password.equals("iloveafterschoolcreatives")) {
                 Context.setAccount_type("SYSTEM");
-                Context.setName("SYSTEM");
+                Context.setName("SYSTEM ACCOUNT");
                 Context.setUsername("afterschoolcreatives");
                 return true;
             }
             this.lbl_password_error.setText("Incorrect system password.");
             return false;
-        } else {
-            UserAccountModel user = UserAccountModel.findUsername(username);
-            if(user == null) {
-                this.lbl_username_error.setText("No account found.");
-                return false;
-            }
-            if(!user.getPassword().equals(password)) {
-                this.lbl_password_error.setText("Incorrect password.");
-                return false;
-            }
-            return true;
         }
+        UserAccountModel user = UserAccountModel.findUsername(username);
+        if(user == null) {
+            this.lbl_username_error.setText("No account found.");
+            return false;
+        }
+        if(!user.getPassword().equals(password)) {
+            this.lbl_password_error.setText("Incorrect password.");
+            return false;
+        }
+        Context.setAccount_type(user.getAccount_type());
+        Context.setName(user.getFull_name());
+        Context.setUsername(user.getUsername());
+        return true;
     }
 }

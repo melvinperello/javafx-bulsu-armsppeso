@@ -79,7 +79,7 @@ public class LoginScreen extends PolarisFxController {
         }
         if (username.equals("afterschoolcreatives")) {
             // system account
-            if (password.equals("iloveafterschoolcreatives")) {
+            if (password.equals("123456")) {
                 Context.app().setAccountType("SYSTEM");
                 Context.app().setAccountName("SYSTEM ACCOUNT");
                 Context.app().setAccountUsername("afterschoolcreatives");

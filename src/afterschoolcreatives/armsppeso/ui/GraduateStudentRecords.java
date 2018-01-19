@@ -293,11 +293,13 @@ public class GraduateStudentRecords extends PolarisFxController {
             this.showWarningMessage("Invalid First Name.");
             return false;
         }
-        // middle
+        // middle (OPTIONAL)
         String middleName = this.getTextString(this.txt_middle_name);
-        if ((!StringTools.isAlpha(middleName, '-', ' ')) || (StringTools.startsWith(middleName, ' ', '-'))) {
-            this.showWarningMessage("Invalid Middle Name.");
-            return false;
+        if (!middleName.isEmpty()) {
+            if ((!StringTools.isAlpha(middleName, '-', ' ')) || (StringTools.startsWith(middleName, ' ', '-'))) {
+                this.showWarningMessage("Invalid Middle Name.");
+                return false;
+            }
         }
 
         String course = this.getTextString(this.txt_course);
@@ -317,35 +319,43 @@ public class GraduateStudentRecords extends PolarisFxController {
             return false;
         }
 
+        // Optional
         String age = this.getTextString(this.txt_age);
-        Integer ageInt;
-        try {
-            ageInt = Integer.valueOf(age);
-            if (ageInt <= 0) {
-                throw new NumberFormatException("Invalid Age.");
+        Integer ageInt = null;
+        if (!age.isEmpty()) {
+            try {
+                ageInt = Integer.valueOf(age);
+                if (ageInt <= 0) {
+                    throw new NumberFormatException("Invalid Age.");
+                }
+            } catch (NumberFormatException e) {
+                this.showWarningMessage("Invalid Age.");
+                return false;
             }
-        } catch (NumberFormatException e) {
-            this.showWarningMessage("Invalid Age.");
-            return false;
         }
 
+        // Optional
         String email = this.txt_email.getText().trim();
-        if (!StringTools.isEmail(email)) {
-            this.showWarningMessage("Invalid E-Mail.");
-            return false;
+        if (!email.isEmpty()) {
+            if (!StringTools.isEmail(email)) {
+                this.showWarningMessage("Invalid E-Mail.");
+                return false;
+            }
         }
 
+        // Optional
         String contact = this.getTextString(this.txt_contact);
-        if (contact.isEmpty()) {
-            this.showWarningMessage("Please Enter a Contact Number.");
-            return false;
-        }
+//        if (contact.isEmpty()) {
+//            this.showWarningMessage("Please Enter a Contact Number.");
+//            return false;
+//        }
 
+        // Optional
         String address = this.getTextString(this.txt_address);
-        if (address.isEmpty()) {
-            this.showWarningMessage("Please Enter an Address.");
-            return false;
-        }
+//        if (address.isEmpty()) {
+//            this.showWarningMessage("Please Enter an Address.");
+//            return false;
+//        }
 
         //----------------------------------------------------------------------
         this.frm_lastname = lastName;

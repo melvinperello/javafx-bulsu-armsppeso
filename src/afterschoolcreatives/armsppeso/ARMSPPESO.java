@@ -1,6 +1,7 @@
 package afterschoolcreatives.armsppeso;
 
 import afterschoolcreatives.armsppeso.models.DatabaseTables;
+import afterschoolcreatives.armsppeso.ui.LoginScreen;
 import afterschoolcreatives.armsppeso.ui.MainMenu;
 import afterschoolcreatives.armsppeso.ui.SplashScreen;
 import afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
@@ -79,7 +80,8 @@ public class ARMSPPESO extends Application {
             System.exit(-1); // internal error
         }
 
-        MainMenu main = new MainMenu();
+//        MainMenu main = new MainMenu();
+        LoginScreen main = new LoginScreen();
         Pane root = main.load();
         Scene primaryScene = new Scene(root);
         primaryScene.setFill(Color.web("#FFFFFF"));
@@ -91,7 +93,7 @@ public class ARMSPPESO extends Application {
         primaryStage.setTitle("Automated Record Management System of Public Placement and Employment Service Office");
         primaryStage.getIcons().add(Context.app().getDrawableImage("app_icon.png"));
         // maximized
-        primaryStage.setMaximized(false);
+        primaryStage.setMaximized(true);
         // on close
         primaryStage.setOnCloseRequest(close -> {
             Optional<ButtonType> res = PolarisDialog.create(PolarisDialog.Type.CONFIRMATION)

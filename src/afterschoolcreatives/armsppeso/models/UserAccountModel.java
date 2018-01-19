@@ -8,10 +8,9 @@ package afterschoolcreatives.armsppeso.models;
 import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.polaris.java.PolarisException;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
-import afterschoolcreatives.polaris.java.sql.DataSet;
+import afterschoolcreatives.polaris.java.sql.DataRow;
 import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -93,24 +92,24 @@ public class UserAccountModel {
      *
      * @return
      */
-    public static ArrayList<UserAccountModel> getAllRecords() {
-        ArrayList<UserAccountModel> accountRecords = new ArrayList<>();
-        String query = "SELECT * FROM `accounts` ORDER BY `_rowid_` DESC;";
+    public static UserAccountModel findUsername(String username) {
+        UserAccountModel gs;
+        String query = "SELECT * FROM `accounts` WHERE 'username' = ? ORDER BY `_rowid_` DESC;";
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
-            DataSet ds = con.fetch(query);
-            ds.forEach(row -> {
-                UserAccountModel gs = new UserAccountModel();
-                gs.setId(row.getValue("id"));
-                gs.setAccount_type(row.getValue("account_type"));
-                gs.setFull_name(row.getValue("full_name"));
-                gs.setPassword(row.getValue("password"));
-                gs.setUsername(row.getValue("username"));
-                accountRecords.add(gs);
-            });
+            DataRow dr = con.fetchFirst(query, username);
+            if(dr.isEmpty()) {
+                return null;
+            }
+            gs = new UserAccountModel();
+            gs.setId(dr.getValue("id"));
+            gs.setAccount_type(dr.getValue("account_type"));
+            gs.setFull_name(dr.getValue("full_name"));
+            gs.setPassword(dr.getValue("password"));
+            gs.setUsername(dr.getValue("username"));
         } catch (SQLException sqlEx) {
             throw new PolarisException("Cannot execute fetch all records", sqlEx);
         }
-        return accountRecords;
+        return gs;
     }
     
     /**

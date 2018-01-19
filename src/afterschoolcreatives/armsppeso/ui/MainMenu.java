@@ -64,6 +64,7 @@ public class MainMenu extends PolarisFxController {
             value.consume();
         });
 
+        this.setupDisplay();
     }
 
     private void countRecords() {
@@ -73,4 +74,11 @@ public class MainMenu extends PolarisFxController {
 
     }
 
+    private void setupDisplay() {
+        this.lbl_name.setText(Context.getName());
+        this.lbl_type.setText(Context.getAccount_type());
+        this.lbl_user.setText(Context.getUsername());
+        
+        this.btn_change_password.setDisable(Context.getAccount_type().equalsIgnoreCase("SYSTEM"));      
+    }
 }

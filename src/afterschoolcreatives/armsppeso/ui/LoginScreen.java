@@ -5,6 +5,8 @@
  */
 package afterschoolcreatives.armsppeso.ui;
 
+import afterschoolcreatives.armsppeso.Context;
+import afterschoolcreatives.armsppeso.models.UserAccountModel;
 import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -52,18 +54,49 @@ public class LoginScreen extends PolarisFxController {
             a.consume();
         });
         this.btn_login.setOnMouseClicked((a)->{
-            MainMenu main = new MainMenu();
-            this.changeRoot(main.load());
-            a.consume();
+            if(this.authenticate()) {
+                MainMenu main = new MainMenu();
+                this.changeRoot(main.load());
+                a.consume();
+            }
         });
     }
     
-    public void changeRoot(Parent newRoot) throws NullPointerException {
-        Stage currentStage = this.getStage();
-        this.getRootPane().setPrefWidth(currentStage.getWidth());
-        this.getRootPane().setPrefHeight(currentStage.getHeight());
-        this.getRootPane().getScene().setRoot(newRoot);
+    private boolean authenticate() {
+        this.lbl_username_error.setText("");
+        this.lbl_password_error.setText("");
+        
+        String username = this.txt_username.getText();
+        if(username.isEmpty()) {
+            this.lbl_username_error.setText("Please enter your username.");
+            return false;
+        }
+        String password = this.txt_password.getText();
+        if(password.isEmpty()) {
+            this.lbl_password_error.setText("Please enter your password.");
+            return false;
+        }
+        if(username.equals("afterschoolcreatives")) {
+            // system account
+            if(password.equals("iloveafterschoolcreatives")) {
+                Context.setAccount_type("SYSTEM");
+                Context.setName("SYSTEM");
+                Context.setUsername("afterschoolcreatives");
+                return true;
+            }
+            this.lbl_password_error.setText("Incorrect system password.");
+            return false;
+        } else {
+            UserAccountModel user = UserAccountModel.findUsername(username);
+            if(user == null) {
+                this.lbl_username_error.setText("No account found.");
+                return false;
+            }
+            if(!user.getPassword().equals(password)) {
+                this.lbl_password_error.setText("Incorrect password.");
+                return false;
+            }
+            return true;
+        }
     }
-    
-    
 }

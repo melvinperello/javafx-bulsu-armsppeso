@@ -93,8 +93,8 @@ public class GraduateStudentRecords extends PolarisFxController {
      */
     public GraduateStudentRecords() {
         this.tableData = FXCollections.observableArrayList();
-        this.loggedUser = "JHON MELVIN PERELLO";
-        this.loggedUserType = "ADMINISTRATOR";
+        this.loggedUser = Context.app().getAccountName();
+        this.loggedUserType = Context.app().getAccountType();
     }
 
     /**
@@ -112,7 +112,7 @@ public class GraduateStudentRecords extends PolarisFxController {
     protected void setup() {
         this.createTable();
         this.populateTable(); //refresh
-        
+
         this.lbl_created.setText("");
         this.lbl_updated.setText("");
 

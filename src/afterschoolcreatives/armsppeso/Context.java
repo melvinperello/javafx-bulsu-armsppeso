@@ -89,32 +89,35 @@ public final class Context {
         return new Image(this.getClass().getResourceAsStream("/res/drawable/" + name));
     }
 
-    /**
-     * USER INFORMATION
-     */
-    private static String Username;
-    private static String Name;
-    private static String Account_type;
+    //--------------------------------------------------------------------------
+    // User Information
+    //--------------------------------------------------------------------------
+    private String accountUsername;
+    private String accountName;
+    private String accountType;
 
-    public static String getUsername() {
-        return Username;
-    }
-    public static void setUsername(String username) {
-        Username = username;
+    public String getAccountUsername() {
+        return accountUsername;
     }
 
-    public static String getName() {
-        return Name;
-    }
-    public static void setName(String name) {
-        Name = name;
+    public void setAccountUsername(String accountUsername) {
+        this.accountUsername = accountUsername;
     }
 
-    public static String getAccount_type() {
-        return Account_type;
+    public String getAccountName() {
+        return accountName;
     }
-    public static void setAccount_type(String account_type) {
-        Account_type = account_type;
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
-    
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
 }

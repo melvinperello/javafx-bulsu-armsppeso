@@ -96,20 +96,23 @@ public class ARMSPPESO extends Application {
         primaryStage.setMaximized(true);
         // on close
         primaryStage.setOnCloseRequest(close -> {
-            Optional<ButtonType> res = PolarisDialog.create(PolarisDialog.Type.CONFIRMATION)
-                    .setTitle("Exit")
-                    .setOwner(primaryStage)
-                    .setHeaderText("Close Application ?")
-                    .setContentText("Are you sure you want to close the application ?")
-                    .showAndWait();
-            if (res.get().getText().equals("OK")) {
-                Platform.exit(); // exit java fx
-                System.exit(0); // ok exit
-            }
-
+            ARMSPPESO.onCloseConfirmation(primaryStage);
             close.consume();
         });
         primaryStage.show();
+    }
+
+    public static void onCloseConfirmation(Stage owner) {
+        Optional<ButtonType> res = PolarisDialog.create(PolarisDialog.Type.CONFIRMATION)
+                .setTitle("Exit")
+                .setOwner(owner)
+                .setHeaderText("Close Application ?")
+                .setContentText("Are you sure you want to close the application ?")
+                .showAndWait();
+        if (res.get().getText().equals("OK")) {
+            Platform.exit(); // exit java fx
+            System.exit(0); // ok exit
+        }
     }
 
     public static void main(String[] args) {

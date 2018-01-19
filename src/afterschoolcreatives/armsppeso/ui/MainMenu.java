@@ -30,6 +30,12 @@ public class MainMenu extends PolarisFxController {
     private JFXButton btnManageProfiles;
 
     @FXML
+    private Label lbl_inquiry_count;
+
+    @FXML
+    private JFXButton btn_manage_inquiries;
+
+    @FXML
     private Label lbl_user;
 
     @FXML
@@ -39,7 +45,7 @@ public class MainMenu extends PolarisFxController {
     private Label lbl_type;
 
     @FXML
-    private JFXButton btn_adduser;
+    private JFXButton btn_useraccounts;
 
     @FXML
     private JFXButton btn_change_password;
@@ -49,6 +55,7 @@ public class MainMenu extends PolarisFxController {
         // make 0
         this.lblStudentCount.setText("0");
         this.lblProfileCount.setText("0");
+        this.lbl_inquiry_count.setText("0");
         // get record count
         this.countRecords();
 
@@ -67,6 +74,9 @@ public class MainMenu extends PolarisFxController {
         this.setupDisplay();
     }
 
+    /**
+     * Counts the records from the tables.
+     */
     private void countRecords() {
 
         this.lblStudentCount.setText(GraduatedStudentModel.getTotalRecords());
@@ -74,11 +84,14 @@ public class MainMenu extends PolarisFxController {
 
     }
 
+    /**
+     * Account information display.
+     */
     private void setupDisplay() {
-        this.lbl_name.setText(Context.getName());
-        this.lbl_type.setText(Context.getAccount_type());
-        this.lbl_user.setText(Context.getUsername());
-        
-        this.btn_change_password.setDisable(Context.getAccount_type().equalsIgnoreCase("SYSTEM"));      
+        this.lbl_name.setText(Context.app().getAccountName());
+        this.lbl_type.setText(Context.app().getAccountType());
+        this.lbl_user.setText(Context.app().getAccountUsername());
+
+        this.btn_change_password.setDisable(Context.app().getAccountType().equalsIgnoreCase("SYSTEM"));
     }
 }

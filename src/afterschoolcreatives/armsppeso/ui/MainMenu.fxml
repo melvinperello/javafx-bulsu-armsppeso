@@ -105,7 +105,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btnManageStudents" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Manage Students">
+                  <JFXButton fx:id="btnManageStudents" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Verify Student">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -195,7 +195,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="lblProfileCount1" alignment="CENTER" maxWidth="1.7976931348623157E308" text="999999">
+                  <Label fx:id="lbl_inquiry_count" alignment="CENTER" maxWidth="1.7976931348623157E308" text="999999">
                      <font>
                         <Font size="60.0" />
                      </font>
@@ -214,7 +214,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btnManageProfiles1" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Inquire">
+                  <JFXButton fx:id="btn_manage_inquiries" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Inquire">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -264,7 +264,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <JFXButton fx:id="btn_adduser" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #B6E4FB;" text="User Accounts">
+                  <JFXButton fx:id="btn_useraccounts" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #B6E4FB;" text="User Accounts">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

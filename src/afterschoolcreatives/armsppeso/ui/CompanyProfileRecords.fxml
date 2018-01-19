@@ -74,14 +74,33 @@
             </VBox>
             <VBox minWidth="400.0">
                <children>
-                  <Label text="Information">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="20.0" />
-                     </padding>
-                  </Label>
+                  <HBox>
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" text="Information" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </Label>
+                        <JFXButton fx:id="btn_clear" style="-fx-border-color: black; -fx-border-style: dashed;" text="Clear">
+                           <HBox.margin>
+                              <Insets top="9.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../res/drawable/clear_fields.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                   <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER_LEFT">

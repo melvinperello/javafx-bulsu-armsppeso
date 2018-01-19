@@ -208,7 +208,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <JFXButton fx:id="btn_adduser" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #B6E4FB;" text="Add User">
+                  <JFXButton fx:id="btn_adduser" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #B6E4FB;" text="User Accounts">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

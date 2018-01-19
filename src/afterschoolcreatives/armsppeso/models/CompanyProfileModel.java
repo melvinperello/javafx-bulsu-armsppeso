@@ -1,10 +1,13 @@
 package afterschoolcreatives.armsppeso.models;
 
 import afterschoolcreatives.armsppeso.Context;
+import afterschoolcreatives.polaris.java.PolarisException;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import afterschoolcreatives.polaris.java.sql.DataSet;
 import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,6 +18,7 @@ public class CompanyProfileModel {
 
     private Integer id;
     private String name;
+    private String preferredCourse;
     private String address;
     private String email;
     private String contactPerson;
@@ -35,6 +39,10 @@ public class CompanyProfileModel {
     //--------------------------------------------------------------------------
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setPreferredCourse(String preferredCoursed) {
+        this.preferredCourse = preferredCoursed;
     }
 
     public void setName(String name) {
@@ -62,6 +70,9 @@ public class CompanyProfileModel {
     }
 
     public void setCreatedDate(Date createdDate) {
+        if (createdDate == null) {
+            return;
+        }
         this.createdDate = new Date(createdDate.getTime());
     }
 
@@ -70,12 +81,19 @@ public class CompanyProfileModel {
     }
 
     public void setLastModifiedDate(Date lastModifiedDate) {
+        if (lastModifiedDate == null) {
+            return;
+        }
         this.lastModifiedDate = new Date(lastModifiedDate.getTime());
     }
 
     //--------------------------------------------------------------------------
     // Getters
     //--------------------------------------------------------------------------
+    public String getPreferredCourse() {
+        return preferredCourse;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -119,6 +137,39 @@ public class CompanyProfileModel {
     //--------------------------------------------------------------------------
     // Static Methods.
     //--------------------------------------------------------------------------
+    /**
+     * Retrieves all company profiles.
+     *
+     * @return
+     */
+    public static ArrayList<CompanyProfileModel> getAllRecords() {
+        ArrayList<CompanyProfileModel> graduateRecords = new ArrayList<>();
+        String query = "SELECT * FROM `company_profile` ORDER BY `_rowid_` DESC;";
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            DataSet ds = con.fetch(query);
+            ds.forEach(row -> {
+                CompanyProfileModel csm = new CompanyProfileModel();
+                csm.setId(row.getValue("id"));
+                csm.setName(row.getValue("name"));
+                csm.setPreferredCourse(row.getValue("preferred_course"));
+                csm.setAddress(row.getValue("address"));
+                csm.setEmail(row.getValue("email"));
+                csm.setContactPerson(row.getValue("contact_person"));
+                csm.setContactNumber(row.getValue("contact_number"));
+                //
+                csm.setCreatedBy(row.getValue("created_by"));
+                csm.setCreatedDate(CompanyProfileModel.convertStorageStringToDate(row.getValue("created_date")));
+                csm.setLastModifiedBy(row.getValue("last_modified_by"));
+                csm.setLastModifiedDate(CompanyProfileModel.convertStorageStringToDate(row.getValue("last_modified_date")));
+                // add entry
+                graduateRecords.add(csm);
+            });
+        } catch (SQLException sqlEx) {
+            throw new PolarisException("Cannot execute fetch all records", sqlEx);
+        }
+        return graduateRecords;
+    }
+
     /**
      * Deletes an entry from Company Profile Table using the primary key.
      *
@@ -173,6 +224,17 @@ public class CompanyProfileModel {
         return Context.app().getStandardDateFormat().format(date);
     }
 
+    private static Date convertStorageStringToDate(String dateString) {
+        if (dateString == null) {
+            return null;
+        }
+        try {
+            return Context.app().getStandardDateFormat().parse(dateString);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     /**
      * Inserts a new Company Profile Record.
      *
@@ -180,9 +242,10 @@ public class CompanyProfileModel {
      */
     public boolean insert() {
         SimpleQuery insertQuery = new SimpleQuery();
-        String query = "INSERT INTO `company_profile`(`name`,`address`,`email`,`contact_person`,`contact_number`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`) VALUES (?,?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO `company_profile`(`name`,`preferred_course`,`address`,`email`,`contact_person`,`contact_number`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`) VALUES (?,?,?,?,?,?,?,?,?,?);";
         insertQuery.addStatementWithParameter(query,
                 this.name,
+                this.preferredCourse,
                 this.address,
                 this.email,
                 this.contactPerson,
@@ -212,6 +275,7 @@ public class CompanyProfileModel {
                 .addStatement("graduated_students") // table
                 // fields here
                 .addStatementWithParameter("SET name = ?,", this.name)
+                .addStatementWithParameter("SET preferred_course = ?,", this.preferredCourse)
                 .addStatementWithParameter("SET address = ?,", this.address)
                 .addStatementWithParameter("SET email = ?,", this.email)
                 .addStatementWithParameter("SET contact_person = ?,", this.contactPerson)

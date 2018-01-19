@@ -1,15 +1,21 @@
 package afterschoolcreatives.armsppeso;
 
+import afterschoolcreatives.armsppeso.models.DatabaseTables;
 import afterschoolcreatives.armsppeso.ui.MainMenu;
 import afterschoolcreatives.armsppeso.ui.SplashScreen;
+import afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
+import java.sql.SQLException;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import jdk.nashorn.internal.runtime.options.Option;
 
 /**
  *
@@ -60,6 +66,19 @@ public class ARMSPPESO extends Application {
      * @param primaryStage
      */
     public void showMain(Stage primaryStage) {
+
+        try {
+            DatabaseTables.create();
+        } catch (SQLException e) {
+            PolarisDialog.create(PolarisDialog.Type.ERROR)
+                    .setTitle("Error")
+                    .setHeaderText("Internal Error")
+                    .setContentText("The System cannot verify the existence of the database file.")
+                    .showAndWait();
+            Platform.exit(); // exit java fx
+            System.exit(-1); // internal error
+        }
+
         MainMenu main = new MainMenu();
         Pane root = main.load();
         Scene primaryScene = new Scene(root);
@@ -72,7 +91,22 @@ public class ARMSPPESO extends Application {
         primaryStage.setTitle("Automated Record Management System of Public Placement and Employment Service Office");
         primaryStage.getIcons().add(Context.app().getDrawableImage("app_icon.png"));
         // maximized
-        primaryStage.setMaximized(true);
+        primaryStage.setMaximized(false);
+        // on close
+        primaryStage.setOnCloseRequest(close -> {
+            Optional<ButtonType> res = PolarisDialog.create(PolarisDialog.Type.CONFIRMATION)
+                    .setTitle("Exit")
+                    .setOwner(primaryStage)
+                    .setHeaderText("Close Application ?")
+                    .setContentText("Are you sure you want to close the application ?")
+                    .showAndWait();
+            if (res.get().getText().equals("OK")) {
+                Platform.exit(); // exit java fx
+                System.exit(0); // ok exit
+            }
+
+            close.consume();
+        });
         primaryStage.show();
     }
 

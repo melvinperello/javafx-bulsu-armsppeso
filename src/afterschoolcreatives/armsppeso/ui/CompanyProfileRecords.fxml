@@ -96,6 +96,16 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT">
                            <children>
+                              <Label prefWidth="110.0" text="Preferred Course">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_preferred_course" promptText="BSIT, BSCE" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
                               <Label prefWidth="110.0" text="Address">
                                  <font>
                                     <Font name="System Bold" size="13.0" />

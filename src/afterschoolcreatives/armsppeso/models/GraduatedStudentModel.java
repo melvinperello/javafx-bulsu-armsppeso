@@ -237,7 +237,7 @@ public class GraduatedStudentModel {
                 gs.setCreatedBy(row.getValue("created_by"));
                 gs.setCreatedDate(GraduatedStudentModel.convertStorageStringToDate(row.getValue("created_date")));
                 gs.setLastModifiedBy(row.getValue("last_modified_by"));
-                gs.setLastModifiedDate(GraduatedStudentModel.convertStorageStringToDate(row.getValue("created_date")));
+                gs.setLastModifiedDate(GraduatedStudentModel.convertStorageStringToDate(row.getValue("last_modified_date")));
                 // add entry
                 graduateRecords.add(gs);
             });

@@ -29,6 +29,21 @@ public class MainMenu extends PolarisFxController {
     @FXML
     private JFXButton btnManageProfiles;
 
+    @FXML
+    private Label lbl_user;
+
+    @FXML
+    private Label lbl_name;
+
+    @FXML
+    private Label lbl_type;
+
+    @FXML
+    private JFXButton btn_adduser;
+
+    @FXML
+    private JFXButton btn_change_password;
+
     @Override
     protected void setup() {
         // make 0

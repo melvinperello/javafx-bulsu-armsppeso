@@ -55,7 +55,9 @@ public class DatabaseTables {
             + "	`full_name`	TEXT,\n"
             + "	`username`	TEXT,\n"
             + "	`password`	TEXT,\n"
-            + "	`account_type`	TEXT DEFAULT 'USER'\n"
+            + "	`account_type`	TEXT DEFAULT 'USER',\n"
+            + "	`created_by`	TEXT,\n"
+            + "	`created_date`	TEXT\n"
             + ");";
 
     /**

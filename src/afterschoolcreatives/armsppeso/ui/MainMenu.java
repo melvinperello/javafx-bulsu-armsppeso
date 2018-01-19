@@ -3,6 +3,7 @@ package afterschoolcreatives.armsppeso.ui;
 import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.armsppeso.models.CompanyProfileModel;
 import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
+import afterschoolcreatives.armsppeso.ui.useraccounts.ChangePassword;
 import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import afterschoolcreatives.polaris.java.sql.DataSet;
@@ -16,40 +17,40 @@ import javafx.scene.control.Label;
  * @author Jhon Melvin
  */
 public class MainMenu extends PolarisFxController {
-
+    
     @FXML
     private Label lblStudentCount;
-
+    
     @FXML
     private JFXButton btnManageStudents;
-
+    
     @FXML
     private Label lblProfileCount;
-
+    
     @FXML
     private JFXButton btnManageProfiles;
-
+    
     @FXML
     private Label lbl_inquiry_count;
-
+    
     @FXML
     private JFXButton btn_manage_inquiries;
-
+    
     @FXML
     private Label lbl_user;
-
+    
     @FXML
     private Label lbl_name;
-
+    
     @FXML
     private Label lbl_type;
-
+    
     @FXML
     private JFXButton btn_useraccounts;
-
+    
     @FXML
     private JFXButton btn_change_password;
-
+    
     @Override
     protected void setup() {
         // make 0
@@ -58,19 +59,25 @@ public class MainMenu extends PolarisFxController {
         this.lbl_inquiry_count.setText("0");
         // get record count
         this.countRecords();
-
+        
         btnManageProfiles.setOnMouseClicked(value -> {
             CompanyProfileRecords gsr = new CompanyProfileRecords();
             this.changeRoot(gsr.load());
             value.consume();
         });
-
+        
         btnManageStudents.setOnMouseClicked(value -> {
             GraduateStudentRecords gsr = new GraduateStudentRecords();
             this.changeRoot(gsr.load());
             value.consume();
         });
-
+        
+        this.btn_change_password.setOnMouseClicked(value -> {
+            ChangePassword cp = new ChangePassword();
+            this.changeRoot(cp.load());
+            value.consume();
+        });
+        
         this.setupDisplay();
     }
 
@@ -78,10 +85,10 @@ public class MainMenu extends PolarisFxController {
      * Counts the records from the tables.
      */
     private void countRecords() {
-
+        
         this.lblStudentCount.setText(GraduatedStudentModel.getTotalRecords());
         this.lblProfileCount.setText(CompanyProfileModel.getTotalRecords());
-
+        
     }
 
     /**
@@ -91,7 +98,7 @@ public class MainMenu extends PolarisFxController {
         this.lbl_name.setText(Context.app().getAccountName());
         this.lbl_type.setText(Context.app().getAccountType());
         this.lbl_user.setText(Context.app().getAccountUsername());
-
+        
         this.btn_change_password.setDisable(Context.app().getAccountType().equalsIgnoreCase("SYSTEM"));
     }
 }

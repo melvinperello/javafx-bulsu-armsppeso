@@ -94,7 +94,7 @@ public class UserAccountModel {
      */
     public static UserAccountModel findUsername(String username) {
         UserAccountModel gs;
-        String query = "SELECT * FROM `accounts` WHERE 'username' = ? ORDER BY `_rowid_` DESC;";
+        String query = "SELECT * FROM `accounts` WHERE username = ? LIMIT 1;";
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             DataRow dr = con.fetchFirst(query, username);
             if(dr.isEmpty()) {

@@ -70,7 +70,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Graduated Students">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Graduate Verification">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -159,6 +159,62 @@
                      </VBox.margin>
                   </Label>
                   <JFXButton fx:id="btnManageProfiles" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #C2FDBC; -fx-border-style: dashed;" text="Manage Profiles">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" style="-fx-background-color: white;">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Inquiry">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/drawable/inquiry.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label fx:id="lblProfileCount1" alignment="CENTER" maxWidth="1.7976931348623157E308" text="999999">
+                     <font>
+                        <Font size="60.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Inquiries Rcorded">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="-20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <JFXButton fx:id="btnManageProfiles1" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Inquire">
                      <font>
                         <Font size="20.0" />
                      </font>

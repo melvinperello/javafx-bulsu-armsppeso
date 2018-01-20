@@ -77,7 +77,6 @@ public class DatabaseTables {
             + "	`contact`	TEXT,\n"
             + "	`description`	TEXT,\n"
             + "	`concern`	TEXT,\n"
-            + "	`archived`	INTEGER NOT NULL DEFAULT 0,\n"
             + "	`created_by`	TEXT,\n"
             + "	`created_date`	TEXT,\n"
             + "	`last_modified_by`	TEXT,\n"

@@ -4,6 +4,7 @@ import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.armsppeso.models.CompanyProfileModel;
 import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
 import afterschoolcreatives.armsppeso.ui.useraccounts.ChangePassword;
+import afterschoolcreatives.armsppeso.ui.useraccounts.UserAccounts;
 import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import afterschoolcreatives.polaris.java.sql.DataSet;
@@ -79,6 +80,12 @@ public class MainMenu extends PolarisFxController {
         });
         
         this.setupDisplay();
+        
+        this.btn_useraccounts.setOnMouseClicked(value->{
+            UserAccounts ua = new UserAccounts();
+            this.changeRoot(ua.load());
+            value.consume();
+        });
     }
 
     /**

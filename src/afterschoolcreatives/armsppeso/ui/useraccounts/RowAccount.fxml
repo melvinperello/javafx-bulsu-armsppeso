@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/ID%20Card_64px_2.png" />
+            <Image url="@../../../../res/drawable/icons8-name-tag-50.png" />
          </image>
          <HBox.margin>
             <Insets right="10.0" />
@@ -45,7 +45,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
          <children>
-            <JFXButton fx:id="btn_remove" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: #EB5463;" text="Edit" textFill="WHITE">
+            <JFXButton fx:id="btn_edit" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: #EB5463;" text="Edit" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btn_remove1" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: #EB5463;" text="Remove" textFill="WHITE">
+            <JFXButton fx:id="btn_remove" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: #EB5463;" text="Remove" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>

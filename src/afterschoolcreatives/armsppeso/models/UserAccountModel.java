@@ -9,8 +9,10 @@ import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.polaris.java.PolarisException;
 import afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import afterschoolcreatives.polaris.java.sql.DataRow;
+import afterschoolcreatives.polaris.java.sql.DataSet;
 import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -158,4 +160,23 @@ public class UserAccountModel {
         }
     }
     
+    public static ArrayList<UserAccountModel> getAllRecords() {
+        ArrayList<UserAccountModel> accountRecords = new ArrayList<>();
+        String query = "SELECT * FROM `accounts` ORDER BY `_rowid_` DESC;";
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            DataSet ds = con.fetch(query);
+            ds.forEach(row -> {
+                UserAccountModel ua = new UserAccountModel();
+                ua.setId(row.getValue("id"));
+                ua.setFull_name(row.getValue("full_name"));
+                ua.setAccount_type(row.getValue("account_type"));
+                ua.setPassword(row.getValue("password"));
+                ua.setUsername(row.getValue("username"));
+                accountRecords.add(ua);
+            });
+        } catch (SQLException sqlEx) {
+            throw new PolarisException("Cannot execute fetch all records", sqlEx);
+        }
+        return accountRecords;
+    }
 }

@@ -35,52 +35,52 @@ import org.afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
  * @author Jhon Melvin
  */
 public class InquiryRecords extends PolarisFxController {
-    
+
     @FXML
     private JFXButton btn_main_from_student;
-    
+
     @FXML
     private TextField txt_search;
-    
+
     @FXML
     private TableView<InquiryModel> tbl_information;
-    
+
     @FXML
     private JFXButton btn_clear;
-    
+
     @FXML
     private TextField txt_name;
-    
+
     @FXML
     private TextField txt_representative;
-    
+
     @FXML
     private TextField txt_address;
-    
+
     @FXML
     private ComboBox<String> cmb_concern;
-    
+
     @FXML
     private TextField txt_contact;
-    
+
     @FXML
     private TextArea txt_description;
-    
+
     @FXML
     private Label lbl_created;
-    
+
     @FXML
     private Label lbl_updated;
-    
+
     @FXML
     private JFXButton btn_add_record;
-    
+
     @FXML
     private JFXButton btn_update_record;
-    
+
     @FXML
     private JFXButton btn_delete_record;
-    
+
     public InquiryRecords() {
         this.tableData = FXCollections.observableArrayList();
         this.loggedUser = Context.app().getAccountName();
@@ -148,10 +148,10 @@ public class InquiryRecords extends PolarisFxController {
      * Contains the data of the table.
      */
     private final ObservableList<InquiryModel> tableData;
-    
+
     private final String loggedUser;
     private final String loggedUserType;
-    
+
     @Override
     protected void setup() {
         this.createTable();
@@ -201,7 +201,7 @@ public class InquiryRecords extends PolarisFxController {
                 } else {
                     this.showWarningMessage("Failed to Update Record.");
                 }
-                
+
             }
         });
 
@@ -241,11 +241,11 @@ public class InquiryRecords extends PolarisFxController {
             if (!valid) {
                 return;
             }
-            
+
             if (!this.showConfirmation("Are you sure you want to update this entry ?")) {
                 return; // cancel
             }
-            
+
             if (this.updateRecord(gsRow)) {
                 this.populateTable();
                 this.showInformationMessage("Successfully Updated Selected Record.");
@@ -253,7 +253,7 @@ public class InquiryRecords extends PolarisFxController {
             } else {
                 this.showWarningMessage("Failed to Update Record.");
             }
-            
+
             click.consume();
         });
 
@@ -266,7 +266,7 @@ public class InquiryRecords extends PolarisFxController {
                 this.clearFields();
                 return;
             }
-            
+
             this.txt_name.setText(this.checkString(newValue.getName()));
             this.txt_representative.setText(this.checkString(newValue.getRepresentative()));
             this.txt_address.setText(this.checkString(newValue.getAddress()));
@@ -293,7 +293,7 @@ public class InquiryRecords extends PolarisFxController {
             this.lbl_created.setText(this.checkString(selected.getCreatedDate()) + " " + this.checkString(selected.getCreatedBy()));
             this.lbl_updated.setText(this.checkString(selected.getLastModifiedDate()) + " " + this.checkString(selected.getLastModifiedBy()));
         });
-        
+
     }
 
     /**
@@ -308,7 +308,7 @@ public class InquiryRecords extends PolarisFxController {
         }
         return value;
     }
-    
+
     private String frm_name;
     private String frm_representative;
     private String frm_address;
@@ -327,13 +327,13 @@ public class InquiryRecords extends PolarisFxController {
             this.showWarningMessage("Please enter company name.");
             return false;
         }
-        
+
         String representative = this.getTextString(this.txt_name);
         if (representative.isEmpty()) {
             this.showWarningMessage("Please enter company representative.");
             return false;
         }
-        
+
         String address = this.getTextString(this.txt_address);
         if (address.isEmpty()) {
             this.showWarningMessage("Please enter company address.");
@@ -363,27 +363,27 @@ public class InquiryRecords extends PolarisFxController {
         TableColumn<InquiryModel, String> numberCol = new TableColumn<>("#");
         numberCol.setPrefWidth(50.0);
         numberCol.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getId().toString()));
-        
+
         TableColumn<InquiryModel, String> dateCol = new TableColumn<>("Date");
         dateCol.setPrefWidth(130.0);
         dateCol.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getCreatedDate()));
-        
+
         TableColumn<InquiryModel, String> nameCol = new TableColumn<>("Name");
         nameCol.setPrefWidth(200.0);
         nameCol.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getName()));
-        
+
         TableColumn<InquiryModel, String> repCol = new TableColumn<>("Representative");
         repCol.setPrefWidth(200.0);
         repCol.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getRepresentative()));
-        
+
         TableColumn<InquiryModel, String> addressCol = new TableColumn<>("Address");
         addressCol.setPrefWidth(220.0);
         addressCol.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getAddress()));
-        
+
         TableColumn<InquiryModel, String> concernCol = new TableColumn<>("Concern");
         concernCol.setPrefWidth(150.0);
         concernCol.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getConcern()));
-        
+
         this.tbl_information.getColumns().addAll(numberCol, dateCol, nameCol, repCol, addressCol, concernCol);
 
         //----------------------------------------------------------------------
@@ -400,7 +400,7 @@ public class InquiryRecords extends PolarisFxController {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-                
+
                 String filterString = newValue.toLowerCase();
                 // if contains in the name
                 if (company.getName().toLowerCase().contains(filterString)) {
@@ -416,19 +416,19 @@ public class InquiryRecords extends PolarisFxController {
                 if (company.getId().toString().equalsIgnoreCase(filterString)) {
                     return true;
                 }
-                
+
                 if (company.getRepresentative().toLowerCase().contains(filterString)) {
                     return true;
                 }
-                
+
                 if (company.getAddress().toLowerCase().contains(filterString)) {
                     return true;
                 }
-                
+
                 if (company.getConcern().toLowerCase().contains(filterString)) {
                     return true;
                 }
-                
+
                 return false; // no match.
             });
         });
@@ -486,8 +486,8 @@ public class InquiryRecords extends PolarisFxController {
         inquiry.setContact(frm_contact);
         inquiry.setDescription(frm_description);
         // created
-        inquiry.setCreatedBy(this.loggedUser);
-        inquiry.setCreatedDate(Context.app().getStandardDateFormat().format(new Date()));
+        inquiry.setCreatedBy(inquiry.getCreatedBy());
+        inquiry.setCreatedDate(inquiry.getCreatedDate());
         // modified
         inquiry.setLastModifiedBy(this.loggedUser);
         inquiry.setLastModifiedDate(Context.app().getStandardDateFormat().format(new Date()));
@@ -507,5 +507,5 @@ public class InquiryRecords extends PolarisFxController {
         this.lbl_created.setText("");
         this.lbl_updated.setText("");
     }
-    
+
 }

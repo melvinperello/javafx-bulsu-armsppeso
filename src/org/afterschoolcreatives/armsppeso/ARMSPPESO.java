@@ -68,11 +68,11 @@ public class ARMSPPESO extends Application {
 
         try {
             DatabaseTables.create();
-        } catch (SQLException e) {
+        } catch (SQLException | RuntimeException ex) {
             PolarisDialog.create(PolarisDialog.Type.ERROR)
                     .setTitle("Error")
                     .setHeaderText("Internal Error")
-                    .setContentText("The System cannot verify the existence of the database file.")
+                    .setContentText("The System cannot verify the existence of the database file. " + ex.getMessage())
                     .showAndWait();
             Platform.exit(); // exit java fx
             System.exit(-1); // internal error

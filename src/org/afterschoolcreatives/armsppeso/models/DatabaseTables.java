@@ -3,6 +3,8 @@ package org.afterschoolcreatives.armsppeso.models;
 import org.afterschoolcreatives.armsppeso.Context;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import java.sql.SQLException;
+import org.afterschoolcreatives.polaris.java.io.FileTool;
+import org.sqlite.SQLiteException;
 
 /**
  *
@@ -84,19 +86,38 @@ public class DatabaseTables {
             + ");";
 
     /**
+     * Documents.
+     */
+    private final static String TABLE_COMPANY_PROFILE_DOCUMENTS
+            = "CREATE TABLE IF NOT EXISTS `company_profile_documents` (\n"
+            + "	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+            + "	`company_profile_id`	INTEGER,\n"
+            + "	`type`	TEXT,\n"
+            + "	`description`	TEXT,\n"
+            + "	`location`	TEXT,\n"
+            + "	`created_by`	TEXT,\n"
+            + "	`created_date`	TEXT\n"
+            + ");";
+
+    /**
      * Create the tables if not existing.
      *
      * @return
      * @throws java.sql.SQLException
      */
     public static void create() throws SQLException {
-        // build connection
-        try (ConnectionManager con = Context.app().getConnectionFactory()
-                .createConnectionManager()) {
-            con.update(DatabaseTables.TABLE_GRADUTES);
-            con.update(DatabaseTables.TABLE_COMPANY_PROFILE);
-            con.update(DatabaseTables.TABLE_ACCOUNTS);
-            con.update(DatabaseTables.TABLE_INQUIRY);
+        if (FileTool.createDirectory(Context.DATA_DRIVE)) {
+            // build connection
+            try (ConnectionManager con = Context.app().getConnectionFactory()
+                    .createConnectionManager()) {
+                con.update(DatabaseTables.TABLE_GRADUTES);
+                con.update(DatabaseTables.TABLE_COMPANY_PROFILE);
+                con.update(DatabaseTables.TABLE_ACCOUNTS);
+                con.update(DatabaseTables.TABLE_INQUIRY);
+                con.update(DatabaseTables.TABLE_COMPANY_PROFILE_DOCUMENTS);
+            }
+        } else {
+            throw new RuntimeException("Cannot Create Drive Directory");
         }
     }
 

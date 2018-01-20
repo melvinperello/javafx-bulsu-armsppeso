@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import org.afterschoolcreatives.armsppeso.ui.documents.CompanyProfileDocuments;
 
 /**
  *
@@ -259,9 +260,13 @@ public class CompanyProfileRecords extends PolarisFxController {
          * Document Upload
          */
         this.btn_check_documents.setOnMouseClicked(value -> {
-            FileChooser chooser = new FileChooser();
-            File doc = chooser.showOpenDialog(this.getStage());
-//            Context.app().uploadDocument(doc, doc.e);
+            CompanyProfileModel gsRow = this.tbl_information.getSelectionModel().getSelectedItem();
+            if (gsRow == null) {
+                this.showWarningMessage("Please select a company to check documents");
+                return;
+            }
+            CompanyProfileDocuments cpd = new CompanyProfileDocuments(this, gsRow);
+            this.changeRoot(cpd.load());
             value.consume();
         });
 

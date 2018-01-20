@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionFactory;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.image.Image;
-import javafx.stage.FileChooser;
 import org.afterschoolcreatives.polaris.java.io.FileTool;
 
 /**
@@ -16,6 +13,8 @@ import org.afterschoolcreatives.polaris.java.io.FileTool;
  * @author Jhon Melvin
  */
 public final class Context {
+
+    public final static String DATA_DRIVE = "disk_drive";
 
     /**
      * Application Context Instance.
@@ -46,7 +45,7 @@ public final class Context {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         // select the database that you are using.
         connectionFactory.setConnectionDriver(ConnectionFactory.Driver.SQLite);
-        connectionFactory.setSQLiteURL("armsppeso.db3");
+        connectionFactory.setSQLiteURL(Context.DATA_DRIVE + File.separator + "armsppeso.db3");
         this.connectionFactory = connectionFactory;
     }
 
@@ -146,7 +145,7 @@ public final class Context {
      * @return
      */
     public boolean uploadDocument(File document, String savedFilename) {
-        final String driveDirectory = "drive" + File.separator + "documents";
+        final String driveDirectory = Context.DATA_DRIVE + File.separator + "documents";
         // check upload directory.
         if (!FileTool.createDirectory(driveDirectory)) {
             return false;

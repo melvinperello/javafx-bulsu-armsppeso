@@ -261,7 +261,7 @@ public class CompanyProfileRecords extends PolarisFxController {
         this.btn_check_documents.setOnMouseClicked(value -> {
             FileChooser chooser = new FileChooser();
             File doc = chooser.showOpenDialog(this.getStage());
-            Context.app().uploadDocument(doc, "sample.pdf");
+//            Context.app().uploadDocument(doc, doc.e);
             value.consume();
         });
 

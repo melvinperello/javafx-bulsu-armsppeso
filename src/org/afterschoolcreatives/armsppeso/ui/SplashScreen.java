@@ -1,6 +1,6 @@
-package afterschoolcreatives.armsppeso.ui;
+package org.afterschoolcreatives.armsppeso.ui;
 
-import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
+import org.afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 
 /**
  *

@@ -1,10 +1,10 @@
-package afterschoolcreatives.armsppeso.ui;
+package org.afterschoolcreatives.armsppeso.ui;
 
-import afterschoolcreatives.armsppeso.Context;
-import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
-import afterschoolcreatives.polaris.java.util.StringTools;
-import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
-import afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
+import org.afterschoolcreatives.armsppeso.Context;
+import org.afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
+import org.afterschoolcreatives.polaris.java.util.StringTools;
+import org.afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
+import org.afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
 import com.jfoenix.controls.JFXButton;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -103,8 +103,7 @@ public class UserAccounts extends PolarisFxController {
         this.cmb_account_type.getItems().add("User");
         this.cmb_account_type.getItems().add("Administrator");
         this.cmb_account_type.getSelectionModel().selectFirst();
-        this.cmb_account_type.setDisable(!org.afterschoolcreatives.armsppeso.Context.app().getAccountType().equalsIgnoreCase("SYSTEM"));
-
+        
         //events
         this.btn_add_account.setOnMouseClicked(value -> {
             if (this.btn_add_account.getText().equalsIgnoreCase("Update Account")) {
@@ -162,7 +161,6 @@ public class UserAccounts extends PolarisFxController {
         }
         // check if existing
         int count = UserAccountModel.isExisting(this.txt_username.getText().toUpperCase(), (insert ? null : selected.getId()));
-        System.out.println(count + "");
         if (count > (insert ? 0 : 1)) {
             this.lbl_error_username.setText("Username already exists.");
             return;
@@ -266,8 +264,11 @@ public class UserAccounts extends PolarisFxController {
         userRow.load();
         //informations
         userRow.getLbl_created_by().setText(account.getCreatedBy());
+        System.out.println("CREATEDBY: "+account.getCreatedBy());
         if(account.getCreatedDate() != null) {
-            userRow.getLbl_date().setText(account.getCreatedDate());} else {
+            System.out.println("DATE: "+account.getCreatedDate());
+            userRow.getLbl_date().setText(account.getCreatedDate());
+        } else {
             userRow.getLbl_date().setText("");
         }
         userRow.getLbl_full_name().setText(account.getFull_name());
@@ -287,6 +288,8 @@ public class UserAccounts extends PolarisFxController {
                 this.backToAddAccount();
             }
         });
+        boolean disableRemove = account.getAccount_type().equalsIgnoreCase("ADMINISTRATOR") && Context.app().getAccountType().equalsIgnoreCase("ADMINISTRATOR");
+        userRow.getBtn_remove().setDisable(disableRemove);
         userRow.getBtn_edit().setOnMouseClicked(value -> {
             this.resetLabelMessages();
             this.txt_full_name.setText(account.getFull_name());
@@ -302,8 +305,11 @@ public class UserAccounts extends PolarisFxController {
             }
             this.btn_add_account.setText("Update Account");
             selected = account;
+            boolean disableButtons = account.getAccount_type().equalsIgnoreCase("ADMINISTRATOR") && Context.app().getAccountType().equalsIgnoreCase("ADMINISTRATOR");
+            this.cmb_account_type.setDisable(disableButtons);
+            this.btn_add_account.setDisable(disableButtons);
         });
-
+        
         SimpleTableCell cellParent = new SimpleTableCell();
         cellParent.setResizePriority(Priority.ALWAYS);
         cellParent.setContent(userRow.getRootPane());

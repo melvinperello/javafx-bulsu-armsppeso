@@ -1,9 +1,6 @@
 package org.afterschoolcreatives.armsppeso;
 
 import org.afterschoolcreatives.armsppeso.models.DatabaseTables;
-import afterschoolcreatives.armsppeso.ui.LoginScreen;
-import afterschoolcreatives.armsppeso.ui.MainMenu;
-import afterschoolcreatives.armsppeso.ui.SplashScreen;
 import org.afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -16,7 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import jdk.nashorn.internal.runtime.options.Option;
+import org.afterschoolcreatives.armsppeso.ui.LoginScreen;
+import org.afterschoolcreatives.armsppeso.ui.SplashScreen;
 
 /**
  *

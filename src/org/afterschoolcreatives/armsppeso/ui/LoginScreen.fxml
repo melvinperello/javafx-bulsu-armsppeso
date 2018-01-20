@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -85,6 +86,9 @@
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btn_exit" layoutX="333.0" layoutY="361.0" prefHeight="23.0" prefWidth="379.0" style="-fx-background-color: #DB4437; -fx-background-radius: 20;" text="Exit" textFill="WHITE">
                <font>
@@ -93,6 +97,9 @@
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </VBox>

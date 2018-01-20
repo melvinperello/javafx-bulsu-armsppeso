@@ -208,7 +208,8 @@ public class GraduatedStudentModel {
             String student_count = student_ds.get(0).getValue("count").toString();
             return student_count;
         } catch (SQLException sqlEx) {
-            throw new RuntimeException("Cannot get count.", sqlEx);
+            sqlEx.printStackTrace();
+            return "0";
         }
     }
 

@@ -224,7 +224,8 @@ public class CompanyProfileModel {
             String profile_count = profile_ds.get(0).getValue("count").toString();
             return profile_count;
         } catch (SQLException sqlEx) {
-            throw new RuntimeException("Cannot get count.", sqlEx);
+            sqlEx.printStackTrace();
+            return "0";
         }
     }
 

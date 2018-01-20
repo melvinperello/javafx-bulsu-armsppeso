@@ -13,6 +13,7 @@ import afterschoolcreatives.polaris.java.sql.DataSet;
 import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -24,7 +25,13 @@ public class UserAccountModel {
     private String username;
     private String password;
     private String account_type;
+    private String createdBy;
+    private Date createdDate;
 
+    public UserAccountModel() {
+        createdDate = null;
+    }
+    
     /**
      * SETTERS
      */
@@ -46,6 +53,17 @@ public class UserAccountModel {
 
     public void setAccount_type(String account_type) {
         this.account_type = account_type;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        if (createdDate == null) {
+            return;
+        }
+        this.createdDate = new Date(createdDate.getTime());
     }
 
     /**
@@ -71,6 +89,17 @@ public class UserAccountModel {
         return account_type;
     }
     
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Date getCreatedDate() {
+        if (this.createdDate == null) {
+            return null;
+        }
+        return new Date(this.createdDate.getTime());
+    }
+
     /**
      * Deletes an entry from Accounts Table using the primary key.
      * @param id
@@ -98,7 +127,7 @@ public class UserAccountModel {
         UserAccountModel gs;
         String query = "SELECT * FROM `accounts` WHERE username = ? LIMIT 1;";
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
-            DataRow dr = con.fetchFirst(query, username);
+            DataRow dr = con.fetchFirst(query, username.toUpperCase());
             if(dr.isEmpty()) {
                 return null;
             }
@@ -121,12 +150,14 @@ public class UserAccountModel {
      */
     public boolean insert() {
         SimpleQuery insertQuery = new SimpleQuery();
-        String query = "INSERT INTO `accounts`(`username`,`password`,`full_name`,`account_type`) VALUES (?,?,?,?);";
+        String query = "INSERT INTO `accounts`(`username`,`password`,`full_name`,`account_type`, 'created_by', 'created_date') VALUES (?,?,?,?,?,?);";
         insertQuery.addStatementWithParameter(query,
                 this.username,
                 this.password,
                 this.full_name,
-                this.account_type
+                this.account_type,
+                this.createdBy,
+                this.createdDate
         );
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             con.update(insertQuery);
@@ -143,19 +174,20 @@ public class UserAccountModel {
      */
     public boolean update() {
         SimpleQuery updateQuery = new SimpleQuery();
-        updateQuery.addStatement("UPDATE") // operation
-                .addStatement("accounts") // table
+        updateQuery.addStatement("UPDATE ") // operation
+                .addStatement("accounts ") // table
                 // fields here
                 .addStatementWithParameter("SET username = ?,", this.username)
                 .addStatementWithParameter("password = ?,", this.password)
                 .addStatementWithParameter("full_name = ?,", this.full_name)
-                .addStatementWithParameter("account_type = ?,", this.account_type)
+                .addStatementWithParameter("account_type = ? ", this.account_type)
                 .addStatementWithParameter("WHERE _rowid_= ?;", this.id);
 
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             con.update(updateQuery);
             return true;
         } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
             return false;
         }
     }
@@ -178,5 +210,36 @@ public class UserAccountModel {
             throw new PolarisException("Cannot execute fetch all records", sqlEx);
         }
         return accountRecords;
+    }
+    
+    public static int isExisting(String username, Integer id) {
+        ArrayList<UserAccountModel> accountRecords = new ArrayList<>();
+        String query = "SELECT * FROM `accounts` where username = ? ORDER BY `_rowid_` DESC;";
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            DataSet ds = con.fetch(query, username);
+            if(ds.isEmpty()) {
+                return 0;
+            }
+            ds.forEach(row -> {
+                UserAccountModel ua = new UserAccountModel();
+                ua.setId(row.getValue("id"));
+                ua.setFull_name(row.getValue("full_name"));
+                ua.setAccount_type(row.getValue("account_type"));
+                ua.setPassword(row.getValue("password"));
+                ua.setUsername(row.getValue("username"));
+                accountRecords.add(ua);
+            });
+            if(id != null) {
+                System.out.println("ID: " + id);
+                for(UserAccountModel each : accountRecords) {
+                    if(!each.getId().equals(id)) {
+                        return 2;
+                    }
+                }
+            }
+        } catch (SQLException sqlEx) {
+            throw new PolarisException("Cannot execute fetch all records", sqlEx);
+        }
+        return (accountRecords.size());
     }
 }

@@ -86,6 +86,8 @@ public class MainMenu extends PolarisFxController {
             this.changeRoot(ua.load());
             value.consume();
         });
+        
+        this.btn_useraccounts.setDisable(Context.app().getAccountType().equalsIgnoreCase("USER"));
     }
 
     /**

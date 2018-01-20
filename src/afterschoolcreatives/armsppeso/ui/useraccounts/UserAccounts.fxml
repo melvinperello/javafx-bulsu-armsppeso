@@ -4,28 +4,44 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: #84DBFF;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" spacing="20.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="10.0" style="-fx-background-color: #5DC8FF;">
          <children>
-            <ImageView fitHeight="73.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/drawable/icons8-identification-documents-50.png" />
+                  <Image url="@../../../../res/drawable/icons8-customer-filled-100.png" />
                </image>
             </ImageView>
-            <Label text="User Accounts" textFill="WHITE">
+            <Label maxWidth="1.7976931348623157E308" text="User Accounts" textFill="#5d5d5e" HBox.hgrow="ALWAYS">
                <font>
-                  <Font size="50.0" />
+                  <Font size="37.0" />
                </font>
             </Label>
+            <JFXButton fx:id="btn_back" prefWidth="200.0" style="-fx-border-color: black; -fx-border-style: dashed;" text="Main Menu" textFill="#606061">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </JFXButton>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </HBox>
       <HBox VBox.vgrow="ALWAYS">
          <children>
@@ -33,7 +49,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="660.0" spacing="10.0">
                      <children>
-                        <Label text="Search" textFill="WHITE">
+                        <Label text="Search" textFill="#464646">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -47,7 +63,7 @@
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../res/drawable/icons8-search-filled-50.png" />
+                                    <Image url="@../../../../res/drawable/icons8-google-web-search-100.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -57,92 +73,173 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox fx:id="tbl_accounts" prefHeight="200.0" prefWidth="100.0" stylesheets="@simple-table.css" VBox.vgrow="ALWAYS">
+                  <StackPane VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
-                  </VBox>
+                     <children>
+                        <VBox fx:id="vbox_message" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="lbl_message" text="No result found." textFill="#393939">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="tbl_accounts" prefHeight="200.0" prefWidth="100.0" stylesheets="@simple-table.css" />
+                     </children>
+                  </StackPane>
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="607.0" prefWidth="344.0" spacing="10.0">
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="607.0" prefWidth="344.0">
                <children>
-                  <Label text="User Information" textFill="WHITE">
-                     <font>
-                        <Font size="29.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT">
                      <children>
-                        <Label prefWidth="108.0" text="Full Name:" textFill="WHITE">
+                        <Label maxWidth="1.7976931348623157E308" text="Information" textFill="#464646" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="btn_clear" style="-fx-border-color: black; -fx-border-style: dashed;" text="Clear">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../res/drawable/clear_fields.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label prefWidth="108.0" text="Full Name:" textFill="#464646">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_full_name" prefHeight="25.0" prefWidth="217.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label fx:id="lbl_error_full_name" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="19.0" text="Error message." textFill="#ff5b5b" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label prefWidth="108.0" text="Username:" textFill="#464646">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_username" prefHeight="25.0" prefWidth="217.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbl_error_username" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="19.0" text="Error message." textFill="#ff5b5b" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="108.0" text="Password:" textFill="#464646">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="txt_password" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbl_error_password" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="19.0" text="Error message." textFill="#ff5b5b" />
+                        <VBox>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="21.0" prefWidth="108.0" text="Confirm Password:" textFill="#464646">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <PasswordField fx:id="txt_password_confirm" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </PasswordField>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="lbl_error_password_confirm" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="19.0" text="Error message." textFill="#ff5b5b" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="108.0" text="Account Type:" textFill="#464646">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="cmb_account_type" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="226.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbl_error_account_type" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="19.0" text="Error message." textFill="#ff5b5b" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="35.0">
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="172.0" text="Created:" textFill="#464646">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txt_full_name" prefHeight="25.0" prefWidth="217.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
+                        <Label fx:id="lbl_created" alignment="TOP_LEFT" maxHeight="100.0" prefHeight="100.0" prefWidth="275.0" text="01/16/2018 05:49:22 PM by VINNA NINNA OROZCO" wrapText="true" HBox.hgrow="ALWAYS" />
                      </children>
+                  </HBox>
+                  <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="53.0" spacing="10.0">
                      <children>
-                        <Label prefWidth="108.0" text="Username:" textFill="WHITE">
+                        <JFXButton fx:id="btn_add_account" prefHeight="40.0" prefWidth="344.0" style="-fx-border-color: #767677; -fx-border-style: dashed;" text="Add Account" textFill="#505051">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="18.0" />
                            </font>
-                        </Label>
-                        <TextField fx:id="txt_username" prefHeight="25.0" prefWidth="217.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
+                        </JFXButton>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" spacing="10.0">
-                     <children>
-                        <Label prefHeight="21.0" prefWidth="108.0" text="Password:" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="txt_password" prefHeight="25.0" prefWidth="217.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="115.0" spacing="10.0">
-                     <children>
-                        <Label prefHeight="21.0" prefWidth="108.0" text="Account Type:" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="cmb_account_type" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="226.0" style="-fx-background-color: #ECF0F1;" HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <JFXButton fx:id="btn_add_account" prefHeight="40.0" prefWidth="344.0" style="-fx-border-color: white;" text="Add Account" textFill="WHITE" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXButton>
+                  </VBox>
                </children>
                <HBox.margin>
-                  <Insets right="20.0" />
+                  <Insets right="20.0" top="20.0" />
                </HBox.margin>
             </VBox>
          </children>
       </HBox>
    </children>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="10.0" />
    </padding>
 </VBox>

@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="252.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../res/drawable/splash_screen.png" />
+            <Image url="@../../../../res/drawable/splash_screen.png" />
          </image>
       </ImageView>
       <Label layoutX="23.0" layoutY="350.0" text="Automated Record Management System of Public Placement and Employment Service Office" textFill="WHITE" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="335.0" />

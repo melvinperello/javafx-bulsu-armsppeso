@@ -18,12 +18,12 @@
                <children>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/bulsu_logo.png" />
+                        <Image url="@../../../../res/drawable/bulsu_logo.png" />
                      </image>
                   </ImageView>
                   <ImageView cache="true" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/peso_logo.png" />
+                        <Image url="@../../../../res/drawable/peso_logo.png" />
                      </image>
                   </ImageView>
                   <VBox id="vertical_separator" prefWidth="5.0" style="-fx-background-color: black;">
@@ -80,7 +80,7 @@
                   </Label>
                   <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/graduated_students.png" />
+                        <Image url="@../../../../res/drawable/graduated_students.png" />
                      </image>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -105,7 +105,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btnManageStudents" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Verify Student">
+                  <JFXButton fx:id="btnManageStudents" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Verify Graduate">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -123,7 +123,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #C2FDBC; -fx-border-style: dashed;" text="Company Profiles">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #C2FDBC; -fx-border-style: dashed;" text="Company Profile">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -133,7 +133,7 @@
                   </Label>
                   <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/company_profile.png" />
+                        <Image url="@../../../../res/drawable/company_profile.png" />
                      </image>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -189,7 +189,7 @@
                   </Label>
                   <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/inquiry.png" />
+                        <Image url="@../../../../res/drawable/inquiry.png" />
                      </image>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -214,7 +214,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btn_manage_inquiries" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Inquire">
+                  <JFXButton fx:id="btn_manage_inquiries" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Manage Inquiries">
                      <font>
                         <Font size="20.0" />
                      </font>

@@ -19,7 +19,7 @@
          <children>
             <ImageView fitHeight="46.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/drawable/icons8-customer-filled-100.png" />
+                  <Image url="@../../../../../res/drawable/icons8-customer-filled-100.png" />
                </image>
             </ImageView>
             <Label maxWidth="1.7976931348623157E308" text="User Accounts" textFill="#5d5d5e" HBox.hgrow="ALWAYS">
@@ -63,7 +63,7 @@
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../res/drawable/icons8-google-web-search-100.png" />
+                                    <Image url="@../../../../../res/drawable/icons8-google-web-search-100.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -105,7 +105,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../res/drawable/clear_fields.png" />
+                                    <Image url="@../../../../../res/drawable/clear_fields.png" />
                                  </image>
                               </ImageView>
                            </graphic>

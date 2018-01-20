@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../res/drawable/inquiry.png" />
+                  <Image url="@../../../../res/drawable/inquiry.png" />
                </image>
             </ImageView>
             <Label maxWidth="1.7976931348623157E308" text="Inquiry" HBox.hgrow="ALWAYS">
@@ -93,7 +93,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../res/drawable/clear_fields.png" />
+                                    <Image url="@../../../../res/drawable/clear_fields.png" />
                                  </image>
                               </ImageView>
                            </graphic>

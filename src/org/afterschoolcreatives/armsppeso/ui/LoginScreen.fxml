@@ -22,7 +22,7 @@
                <children>
                   <ImageView fitHeight="92.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/bulsu_logo.png" />
+                        <Image url="@../../../../res/drawable/bulsu_logo.png" />
                      </image>
                   </ImageView>
                   <Label prefHeight="59.0" prefWidth="229.0" text="Automated Record Management System of Public Placement and Employment Service Office" textAlignment="CENTER" textFill="#767677" wrapText="true">
@@ -32,14 +32,14 @@
                   </Label>
                   <ImageView fitHeight="92.0" fitWidth="116.0" layoutX="299.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../res/drawable/peso_logo.png" />
+                        <Image url="@../../../../res/drawable/peso_logo.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../res/drawable/app_icon.png" />
+                  <Image url="@../../../../res/drawable/app_icon.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER" spacing="15.0">

@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../res/drawable/icons8-name-tag-100.png" />
+            <Image url="@../../../../../res/drawable/icons8-name-tag-100.png" />
          </image>
          <HBox.margin>
             <Insets right="10.0" />
@@ -45,7 +45,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
          <children>
-            <JFXButton fx:id="btn_edit" prefWidth="100.0" style="-fx-border-color: white; -fx-background-color: #EB5463;" text="Edit" textFill="WHITE">
+            <JFXButton fx:id="btn_edit" prefWidth="100.0" style="-fx-border-color: black;" text="Edit">
                <font>
                   <Font size="13.0" />
                </font>

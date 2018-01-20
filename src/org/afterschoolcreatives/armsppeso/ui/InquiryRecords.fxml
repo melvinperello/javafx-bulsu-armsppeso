@@ -137,7 +137,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label prefWidth="110.0" text="Concern">
+                              <Label minWidth="-Infinity" prefWidth="110.0" text="Concern">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>

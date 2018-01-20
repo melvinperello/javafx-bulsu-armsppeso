@@ -26,7 +26,7 @@ public class UserAccountModel {
     private String password;
     private String account_type;
     private String createdBy;
-    private Date createdDate;
+    private String createdDate;
 
     public UserAccountModel() {
         createdDate = null;
@@ -63,7 +63,7 @@ public class UserAccountModel {
         if (createdDate == null) {
             return;
         }
-        this.createdDate = new Date(createdDate.getTime());
+        this.createdDate = Context.app().getStandardDateFormat().format(createdDate);
     }
 
     /**
@@ -93,11 +93,11 @@ public class UserAccountModel {
         return createdBy;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         if (this.createdDate == null) {
             return null;
         }
-        return new Date(this.createdDate.getTime());
+        return this.createdDate;
     }
 
     /**

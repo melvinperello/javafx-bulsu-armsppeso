@@ -266,7 +266,7 @@ public class UserAccounts extends PolarisFxController {
         //informations
         userRow.getLbl_created_by().setText(account.getCreatedBy());
         if(account.getCreatedDate() != null) {
-            userRow.getLbl_date().setText(Context.app().getStandardDateFormat().format(account.getCreatedDate().getTime()));
+            userRow.getLbl_date().setText(account.getCreatedDate());
         } else {
             userRow.getLbl_date().setText("");
         }
@@ -296,7 +296,7 @@ public class UserAccounts extends PolarisFxController {
             this.txt_password_confirm.setDisable(true);
             this.txt_username.setText(account.getUsername());
             if(account.getCreatedDate()!=null) {
-                this.lbl_created.setText(Context.app().getStandardDateFormat().format(account.getCreatedDate().getTime()) + " by " + account.getCreatedBy());
+                this.lbl_created.setText(account.getCreatedDate() + " by " + account.getCreatedBy());
             } else {
                 this.lbl_created.setText("UNKNOWN");
             }

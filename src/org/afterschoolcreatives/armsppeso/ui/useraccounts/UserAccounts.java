@@ -143,7 +143,7 @@ public class UserAccounts extends PolarisFxController {
         this.lbl_error_password.setText("");
         this.lbl_error_password_confirm.setText("");
         this.lbl_error_username.setText("");
-        this.lbl_created.setText("");
+        this.lbl_created.setText("NONE");
     }
 
     private void validate(boolean insert) {

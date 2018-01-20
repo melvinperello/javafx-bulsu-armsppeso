@@ -12,6 +12,7 @@ import org.afterschoolcreatives.polaris.java.sql.DataRow;
 import org.afterschoolcreatives.polaris.java.sql.DataSet;
 import org.afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -137,6 +138,8 @@ public class UserAccountModel {
             gs.setFull_name(dr.getValue("full_name"));
             gs.setPassword(dr.getValue("password"));
             gs.setUsername(dr.getValue("username"));
+            gs.setCreatedBy(dr.getValue("created_by"));
+            gs.setCreatedDate(convertStorageStringToDate(dr.getValue("created_date")));
         } catch (SQLException sqlEx) {
             throw new PolarisException("Cannot execute fetch all records", sqlEx);
         }
@@ -204,6 +207,8 @@ public class UserAccountModel {
                 ua.setAccount_type(row.getValue("account_type"));
                 ua.setPassword(row.getValue("password"));
                 ua.setUsername(row.getValue("username"));
+                ua.setCreatedBy(row.getValue("created_by"));
+                ua.setCreatedDate(convertStorageStringToDate(row.getValue("created_date")));
                 accountRecords.add(ua);
             });
         } catch (SQLException sqlEx) {
@@ -223,10 +228,6 @@ public class UserAccountModel {
             ds.forEach(row -> {
                 UserAccountModel ua = new UserAccountModel();
                 ua.setId(row.getValue("id"));
-                ua.setFull_name(row.getValue("full_name"));
-                ua.setAccount_type(row.getValue("account_type"));
-                ua.setPassword(row.getValue("password"));
-                ua.setUsername(row.getValue("username"));
                 accountRecords.add(ua);
             });
             if(id != null) {
@@ -257,9 +258,22 @@ public class UserAccountModel {
             gs.setFull_name(dr.getValue("full_name"));
             gs.setPassword(dr.getValue("password"));
             gs.setUsername(dr.getValue("username"));
+            gs.setCreatedBy(dr.getValue("created_by"));
+            gs.setCreatedDate(convertStorageStringToDate(dr.getValue("created_date")));
         } catch (SQLException sqlEx) {
             throw new PolarisException("Cannot execute fetch all records", sqlEx);
         }
         return gs;
+    }
+    
+    private static Date convertStorageStringToDate(String dateString) {
+        if (dateString == null) {
+            return null;
+        }
+        try {
+            return Context.app().getStandardDateFormat().parse(dateString);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 }

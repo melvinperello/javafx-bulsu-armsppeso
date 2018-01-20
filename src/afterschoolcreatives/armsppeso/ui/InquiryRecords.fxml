@@ -3,8 +3,10 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,21 +16,21 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: FFFFFF;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="20.0" style="-fx-background-color: #C2FDBC;">
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="20.0" style="-fx-background-color: #B6E4FB;">
          <children>
             <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../res/drawable/company_profile.png" />
+                  <Image url="@../../../res/drawable/inquiry.png" />
                </image>
             </ImageView>
-            <Label maxWidth="1.7976931348623157E308" text="Company Profile" HBox.hgrow="ALWAYS">
+            <Label maxWidth="1.7976931348623157E308" text="Inquiry" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <JFXButton fx:id="btn_main_from_profile" prefWidth="200.0" style="-fx-border-color: black; -fx-border-style: dashed;" text="Main Menu">
+                  <JFXButton fx:id="btn_main_from_student" prefWidth="200.0" style="-fx-border-color: black; -fx-border-style: dashed;" text="Main Menu">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -115,72 +117,52 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label prefWidth="110.0" text="Description">
+                              <Label prefWidth="110.0" text="Representative">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txt_description" promptText="Company Information" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="txt_representative" promptText="Representative Name" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label prefWidth="110.0" text="Contact Person">
+                              <Label prefWidth="110.0" text="Address">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txt_contact_person" promptText="Contact Person" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="txt_address" promptText="Middle Name" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label prefWidth="110.0" text="Position">
+                              <Label prefWidth="110.0" text="Concern">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txt_position" promptText="Contact Person's Position" HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="cmb_concern" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label prefWidth="110.0" text="Preferred Course">
+                              <Label prefWidth="110.0" styleClass="optional-labels" text="Contact">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txt_preferred_course" promptText="BSIT, BSCE" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="txt_contact" promptText="Landline or Mobile" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT">
+                        <HBox>
                            <children>
-                              <Label prefWidth="110.0" styleClass="optional-labels" text="Contact Number">
+                              <Label minWidth="-Infinity" prefWidth="110.0" styleClass="optional-labels" text="Description">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txt_contact_number" promptText="Landline or Mobile" HBox.hgrow="ALWAYS" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT">
-                           <children>
-                              <Label prefWidth="110.0" styleClass="optional-labels" text="Address">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="txt_address" promptText="Company Address" HBox.hgrow="ALWAYS" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT">
-                           <children>
-                              <Label prefWidth="110.0" styleClass="optional-labels" text="E-Mail">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="txt_email" promptText="Company E-Mail" HBox.hgrow="ALWAYS" />
+                              <TextArea fx:id="txt_description" maxHeight="200.0" prefHeight="100.0" promptText="Enter description here . . ." HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                         <HBox prefHeight="35.0">
@@ -216,14 +198,6 @@
                            </cursor>
                         </JFXButton>
                         <JFXButton fx:id="btn_update_record" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-style: dashed;" text="Update">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
-                        <JFXButton fx:id="btn_check_documents" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-style: dashed;" text="Check Documents">
                            <font>
                               <Font size="14.0" />
                            </font>

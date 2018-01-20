@@ -72,7 +72,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox minWidth="400.0">
+            <VBox maxWidth="400.0" minWidth="400.0">
                <children>
                   <HBox>
                      <children>

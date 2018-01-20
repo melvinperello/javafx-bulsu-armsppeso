@@ -21,7 +21,7 @@
                   <Image url="@../../../res/drawable/company_profile.png" />
                </image>
             </ImageView>
-            <Label maxWidth="1.7976931348623157E308" text="Company Profiles" HBox.hgrow="ALWAYS">
+            <Label maxWidth="1.7976931348623157E308" text="Company Profile" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="37.0" />
                </font>

@@ -164,7 +164,7 @@ public class GraduateStudentRecords extends PolarisFxController {
         this.btn_update_record.setOnMouseClicked(click -> {
             GraduateStudentTableRow gsRow = this.tbl_information.getSelectionModel().getSelectedItem();
             if (gsRow == null) {
-                this.showWarningMessage("Please select an entry to delete");
+                this.showWarningMessage("Please select an entry to update");
                 return;
             }
             boolean valid = this.validateFields();

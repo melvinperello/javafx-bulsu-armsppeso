@@ -2,17 +2,26 @@ package afterschoolcreatives.armsppeso.ui;
 
 import afterschoolcreatives.armsppeso.Context;
 import afterschoolcreatives.armsppeso.models.CompanyProfileModel;
+import afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
+import afterschoolcreatives.polaris.java.util.StringTools;
 import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
+import afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
 import com.jfoenix.controls.JFXButton;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Optional;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,8 +90,65 @@ public class CompanyProfileRecords extends PolarisFxController {
 
     public CompanyProfileRecords() {
         this.tableData = FXCollections.observableArrayList();
-        this.loggedUser = "JHON MELVIN PERELLO";
-        this.loggedUserType = "ADMINISTRATOR";
+        this.loggedUser = Context.app().getAccountName();
+        this.loggedUserType = Context.app().getAccountUsername();
+    }
+
+    /**
+     * Gets the text from the text field and removes extra spaces in between.
+     *
+     * @param textfield
+     * @return
+     */
+    private String getTextString(TextField textfield) {
+        return textfield.getText().toUpperCase(Locale.ENGLISH).trim().replaceAll("\\s+", " ");
+    }
+
+    /**
+     * Display a warning message with this stage as owner.
+     *
+     * @param message
+     */
+    private void showWarningMessage(String message) {
+        PolarisDialog.create(PolarisDialog.Type.WARNING)
+                .setTitle("Company Profile")
+                .setHeaderText("Warning")
+                .setContentText(message)
+                .setOwner(this.getStage())
+                .showAndWait();
+    }
+
+    /**
+     * Displays an information message.
+     *
+     * @param message
+     */
+    private void showInformationMessage(String message) {
+        PolarisDialog.create(PolarisDialog.Type.INFORMATION)
+                .setTitle("Company Profile")
+                .setHeaderText("Information")
+                .setContentText(message)
+                .setOwner(this.getStage())
+                .showAndWait();
+    }
+
+    /**
+     * Displays a confirmation message.
+     *
+     * @param message
+     * @return
+     */
+    private boolean showConfirmation(String message) {
+        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Optional<ButtonType> res = PolarisDialog.create(PolarisDialog.Type.CONFIRMATION)
+                .setTitle("Company Profile")
+                .setHeaderText("Confirmation")
+                .setContentText(message)
+                .setOwner(this.getStage())
+                .setButtons(yesButton, cancelButton)
+                .showAndWait();
+        return res.get().getButtonData().equals(ButtonBar.ButtonData.YES);
     }
 
     /**
@@ -118,6 +184,169 @@ public class CompanyProfileRecords extends PolarisFxController {
             value.consume();
         });
 
+        /**
+         * Add Record
+         */
+        this.btn_add_record.setOnMouseClicked(click -> {
+            boolean valid = this.validateFields();
+            if (valid) {
+                boolean confirm = this.showConfirmation("Are you sure you want to add this record ?");
+                if (!confirm) {
+                    return; // cancel
+                }
+                if (this.insertRecord()) {
+                    this.populateTable();
+                    this.showInformationMessage("Successfully added a new Record.");
+                    this.clearFields();
+                } else {
+                    this.showWarningMessage("Failed to Update Record.");
+                }
+
+            }
+        });
+
+        /**
+         * Update Record.
+         */
+        this.btn_update_record.setOnMouseClicked(click -> {
+            CompanyProfileModel gsRow = this.tbl_information.getSelectionModel().getSelectedItem();
+            if (gsRow == null) {
+                this.showWarningMessage("Please select an entry to delete");
+                return;
+            }
+            boolean valid = this.validateFields();
+            if (!valid) {
+                return;
+            }
+
+            if (!this.showConfirmation("Are you sure you want to update this entry ?")) {
+                return; // cancel
+            }
+
+            if (this.updateRecord(gsRow)) {
+                this.populateTable();
+                this.showInformationMessage("Successfully Updated Selected Record.");
+                this.clearFields();
+            } else {
+                this.showWarningMessage("Failed to Update Record.");
+            }
+
+            click.consume();
+        });
+
+        /**
+         * Delete Records
+         */
+        this.btn_delete_record.setOnMouseClicked(click -> {
+            CompanyProfileModel gsRow = this.tbl_information.getSelectionModel().getSelectedItem();
+            if (gsRow == null) {
+                this.showWarningMessage("Please select an entry to delete");
+                return;
+            }
+            if (!this.showConfirmation("Are you sure you want to delete this entry ?")) {
+                return; // cancel
+            }
+            boolean res = CompanyProfileModel.delete(gsRow.getId());
+            if (res) {
+                this.showInformationMessage("Entry Was Delete");
+                this.clearFields();
+                this.populateTable();
+            } else {
+                this.showWarningMessage("Failed to Delete Record.");
+            }
+            click.consume();
+        });
+
+        /**
+         * Table Listener
+         */
+        this.tbl_information.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends CompanyProfileModel> observable, CompanyProfileModel oldValue, CompanyProfileModel newValue) -> {
+            CompanyProfileModel selected = newValue;
+            if (selected == null) {
+                this.clearFields();
+                return;
+            }
+            // fields
+            this.txt_name.setText(this.checkString(selected.getName()));
+            this.txt_description.setText(this.checkString(selected.getDescription()));
+            this.txt_contact_person.setText(this.checkString(selected.getContactPerson()));
+            this.txt_position.setText(this.checkString(selected.getContactPosition()));
+            this.txt_preferred_course.setText(this.checkString(selected.getPreferredCourse()));
+            //
+            this.txt_contact_number.setText(this.checkString(selected.getContactNumber()));
+            this.txt_address.setText(this.checkString(selected.getAddress()));
+            this.txt_email.setText(this.checkString(selected.getEmail()));
+
+            // dates
+            String createdDate = "";
+            String modifiedDate = "";
+            try {
+                createdDate = Context.app().getStandardDateFormat().format(selected.getCreatedDate());
+            } catch (Exception e) {
+            }
+
+            try {
+                modifiedDate = Context.app().getStandardDateFormat().format(selected.getLastModifiedDate());
+            } catch (Exception e) {
+            }
+
+            this.lbl_created.setText(createdDate + " " + this.checkString(selected.getCreatedBy()));
+            this.lbl_updated.setText(modifiedDate + " " + this.checkString(selected.getLastModifiedBy()));
+        });
+
+    }
+
+    private String checkString(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value;
+    }
+
+    /**
+     * Inserts a new record on the database when validation is successful.
+     */
+    private boolean insertRecord() {
+        CompanyProfileModel company = new CompanyProfileModel();
+        company.setName(frm_name);
+        company.setDescription(frm_description);
+        company.setContactPerson(frm_contactPerson);
+        company.setContactPosition(frm_position);
+        company.setPreferredCourse(frm_preferredCourse);
+        company.setContactNumber(frm_contactNumber);
+        company.setAddress(frm_address);
+        company.setEmail(frm_email);
+        // created
+        company.setCreatedBy(this.loggedUser);
+        company.setCreatedDate(new Date());
+        // modified
+        company.setLastModifiedBy(this.loggedUser);
+        company.setLastModifiedDate(new Date());
+        return company.insert();
+    }
+
+    /**
+     * Updates the record.
+     *
+     * @param company
+     * @return
+     */
+    private boolean updateRecord(CompanyProfileModel company) {
+        company.setName(frm_name);
+        company.setDescription(frm_description);
+        company.setContactPerson(frm_contactPerson);
+        company.setContactPosition(frm_position);
+        company.setPreferredCourse(frm_preferredCourse);
+        company.setContactNumber(frm_contactNumber);
+        company.setAddress(frm_address);
+        company.setEmail(frm_email);
+        // created
+        company.setCreatedDate(company.getCreatedDate());
+        company.setCreatedBy(company.getCreatedBy());
+        // modified
+        company.setLastModifiedBy(this.loggedUser);
+        company.setLastModifiedDate(new Date());
+        return company.update();
     }
 
     /**
@@ -197,10 +426,85 @@ public class CompanyProfileRecords extends PolarisFxController {
         this.tbl_information.setItems(sortedData);
     }
 
+    /**
+     * Populate table with contents.
+     */
     private void populateTable() {
         this.tableData.clear(); // clear
         ArrayList<CompanyProfileModel> companies = CompanyProfileModel.getAllRecords();
         this.tableData.addAll(companies);
+    }
+
+    private String frm_name;
+    private String frm_description;
+    private String frm_contactPerson;
+    private String frm_position;
+    private String frm_preferredCourse;
+    private String frm_contactNumber;
+    private String frm_address;
+    private String frm_email;
+
+    private boolean validateFields() {
+        String name = this.getTextString(this.txt_name);
+        if (name.isEmpty()) {
+            this.showWarningMessage("Please enter a company name.");
+            return false;
+        }
+
+        String description = this.getTextString(this.txt_description);
+        if (description.isEmpty()) {
+            this.showWarningMessage("Please enter a company description.");
+            return false;
+        }
+
+        String contactPerson = this.getTextString(this.txt_contact_person);
+        if (contactPerson.isEmpty()) {
+            this.showWarningMessage("Please enter a contact person.");
+            return false;
+        }
+
+        if ((!StringTools.isAlpha(contactPerson, '-', ' ', '.')) || (StringTools.startsWith(contactPerson, ' ', '-', '.'))) {
+            this.showWarningMessage("Contact Person contains invalid characters.");
+            return false;
+        }
+
+        String position = this.getTextString(this.txt_position);
+        if (position.isEmpty()) {
+            this.showWarningMessage("Please enter the Contact Person's position.");
+            return false;
+        }
+
+        String preferredCourse = this.getTextString(this.txt_preferred_course);
+        if (preferredCourse.isEmpty()) {
+            this.showWarningMessage("Please enter a preferred course, separated by comma for multiple entries.");
+            return false;
+        }
+
+        // optional fields
+        String email = this.txt_email.getText().trim();
+        if (!email.isEmpty()) {
+            if (!StringTools.isEmail(email)) {
+                this.showWarningMessage("Invalid E-Mail.");
+                return false;
+            }
+        }
+        //
+        String contact = this.getTextString(this.txt_contact_number);
+        //
+        String address = this.getTextString(this.txt_address);
+
+        // copy fields
+        this.frm_name = name;
+        this.frm_description = description;
+        this.frm_contactPerson = contactPerson;
+        this.frm_position = position;
+        this.frm_preferredCourse = preferredCourse;
+        this.frm_contactNumber = contact;
+        this.frm_address = address;
+        this.frm_email = email;
+        // ok
+        return true;
+
     }
 
     /**
@@ -213,6 +517,8 @@ public class CompanyProfileRecords extends PolarisFxController {
         this.txt_contact_number.setText("");
         this.txt_contact_person.setText("");
         this.txt_email.setText("");
+        this.txt_description.setText("");
+        this.txt_position.setText("");
         //
         this.lbl_created.setText("");
         this.lbl_updated.setText("");

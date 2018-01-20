@@ -66,6 +66,25 @@ public class DatabaseTables {
             + ");";
 
     /**
+     * Create Inquiry Table.
+     */
+    private final static String TABLE_INQUIRY
+            = "CREATE TABLE IF NOT EXISTS `inquiry` (\n"
+            + "	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+            + "	`name`	TEXT,\n"
+            + "	`representative`	TEXT,\n"
+            + "	`address`	TEXT,\n"
+            + "	`contact`	TEXT,\n"
+            + "	`description`	TEXT,\n"
+            + "	`concern`	TEXT,\n"
+            + "	`archived`	INTEGER NOT NULL DEFAULT 0,\n"
+            + "	`created_by`	TEXT,\n"
+            + "	`created_date`	TEXT,\n"
+            + "	`last_modified_by`	TEXT,\n"
+            + "	`last_modified_date`	TEXT\n"
+            + ");";
+
+    /**
      * Create the tables if not existing.
      *
      * @return
@@ -78,6 +97,7 @@ public class DatabaseTables {
             con.update(DatabaseTables.TABLE_GRADUTES);
             con.update(DatabaseTables.TABLE_COMPANY_PROFILE);
             con.update(DatabaseTables.TABLE_ACCOUNTS);
+            con.update(DatabaseTables.TABLE_INQUIRY);
         }
     }
 

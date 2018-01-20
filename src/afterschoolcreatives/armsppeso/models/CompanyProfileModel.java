@@ -297,21 +297,21 @@ public class CompanyProfileModel {
     public boolean update() {
         SimpleQuery updateQuery = new SimpleQuery();
         updateQuery.addStatement("UPDATE") // operation
-                .addStatement("graduated_students") // table
+                .addStatement("company_profile") // table
                 // fields here
                 .addStatementWithParameter("SET name = ?,", this.name)
-                .addStatementWithParameter("SET preferred_course = ?,", this.preferredCourse)
-                .addStatementWithParameter("SET address = ?,", this.address)
-                .addStatementWithParameter("SET email = ?,", this.email)
-                .addStatementWithParameter("SET contact_person = ?,", this.contactPerson)
-                .addStatementWithParameter("SET contact_number = ?,", this.contactNumber)
+                .addStatementWithParameter("preferred_course = ?,", this.preferredCourse)
+                .addStatementWithParameter("address = ?,", this.address)
+                .addStatementWithParameter("email = ?,", this.email)
+                .addStatementWithParameter("contact_person = ?,", this.contactPerson)
+                .addStatementWithParameter("contact_number = ?,", this.contactNumber)
                 .addStatementWithParameter("created_by = ?,", this.createdBy)
                 .addStatementWithParameter("created_date = ?,", this.convertDateToStorageString(this.createdDate))
                 .addStatementWithParameter("last_modified_by = ?,", this.lastModifiedBy)
-                .addStatementWithParameter("last_modified_date = ?", this.convertDateToStorageString(this.lastModifiedDate))
+                .addStatementWithParameter("last_modified_date = ?,", this.convertDateToStorageString(this.lastModifiedDate))
                 // new
                 .addStatementWithParameter("contact_position = ?,", this.contactPosition)
-                .addStatementWithParameter("description = ?,", this.description)
+                .addStatementWithParameter("description = ?", this.description)
                 // where clause
                 .addStatementWithParameter("WHERE _rowid_= ?;", this.id);
 

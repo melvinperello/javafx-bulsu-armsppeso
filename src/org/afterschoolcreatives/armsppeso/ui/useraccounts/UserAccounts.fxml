@@ -229,12 +229,20 @@
                         <Label fx:id="lbl_created" alignment="TOP_LEFT" maxHeight="100.0" prefHeight="100.0" prefWidth="275.0" text="01/16/2018 05:49:22 PM by VINNA NINNA OROZCO" wrapText="true" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                  <VBox alignment="BOTTOM_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
                         <JFXButton fx:id="btn_add_account" prefHeight="40.0" prefWidth="344.0" style="-fx-border-color: #767677; -fx-border-style: dashed;" text="Add Account" textFill="#505051">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton fx:id="btn_back_to_add" layoutX="10.0" layoutY="214.0" prefHeight="40.0" prefWidth="344.0" style="-fx-border-color: #767677; -fx-border-style: dashed;" text="Back to Add Account" textFill="#505051">
                            <font>
                               <Font size="18.0" />
                            </font>

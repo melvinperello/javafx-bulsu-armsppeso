@@ -90,6 +90,9 @@ public class UserAccounts extends PolarisFxController {
     @FXML
     private Label lbl_created;
 
+    @FXML
+    private JFXButton btn_back_to_add;
+    
     private SimpleTable tableAccounts = new SimpleTable();
 
     @Override
@@ -126,6 +129,9 @@ public class UserAccounts extends PolarisFxController {
         this.btn_clear.setOnMouseClicked(value -> {
             this.clearAllFields();
         });
+        this.btn_back_to_add.setOnMouseClicked(value->{
+            this.backToAddAccount();
+        });
     }
 
     private void clearAllFields() {
@@ -148,6 +154,7 @@ public class UserAccounts extends PolarisFxController {
 
     private void validate(boolean insert) {
         this.resetLabelMessages();
+        this.btn_back_to_add.setDisable(true);
 
         String full_name = this.txt_full_name.getText();
         if (full_name.isEmpty()) {
@@ -205,7 +212,10 @@ public class UserAccounts extends PolarisFxController {
         this.btn_add_account.setText("Add Account");
         this.txt_password.setDisable(false);
         this.txt_password_confirm.setDisable(false);
-        this.lbl_created.setText("");
+        this.lbl_created.setText("NONE");
+        this.btn_back_to_add.setDisable(true);
+        this.btn_add_account.setDisable(false);
+        this.cmb_account_type.setDisable(false);
     }
 
     private void insertAccount() {
@@ -291,6 +301,7 @@ public class UserAccounts extends PolarisFxController {
         boolean disableRemove = account.getAccount_type().equalsIgnoreCase("ADMINISTRATOR") && Context.app().getAccountType().equalsIgnoreCase("ADMINISTRATOR");
         userRow.getBtn_remove().setDisable(disableRemove);
         userRow.getBtn_edit().setOnMouseClicked(value -> {
+            this.btn_back_to_add.setDisable(false);
             this.resetLabelMessages();
             this.txt_full_name.setText(account.getFull_name());
             this.txt_password.setText(account.getPassword());

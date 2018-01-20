@@ -38,17 +38,22 @@ public class DatabaseTables {
             = "CREATE TABLE IF NOT EXISTS `company_profile` (\n"
             + "	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
             + "	`name`	TEXT,\n"
+            + "	`description`	TEXT,\n"
+            + "	`contact_person`	TEXT,\n"
+            + "	`contact_position`	TEXT,\n"
+            + "	`contact_number`	TEXT,\n"
             + "	`preferred_course`	TEXT,\n"
             + "	`address`	TEXT,\n"
             + "	`email`	TEXT,\n"
-            + "	`contact_person`	TEXT,\n"
-            + "	`contact_number`	TEXT,\n"
             + "	`created_by`	TEXT,\n"
             + "	`created_date`	TEXT,\n"
             + "	`last_modified_by`	TEXT,\n"
             + "	`last_modified_date`	TEXT\n"
             + ");";
 
+    /**
+     * Query for creating the account table.
+     */
     private final static String TABLE_ACCOUNTS
             = "CREATE TABLE IF NOT EXISTS `accounts` (\n"
             + "	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"

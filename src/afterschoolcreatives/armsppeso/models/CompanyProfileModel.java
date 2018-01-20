@@ -28,6 +28,9 @@ public class CompanyProfileModel {
     private Date createdDate;
     private String lastModifiedBy;
     private Date lastModifiedDate;
+    //
+    private String contactPosition;
+    private String description;
 
     public CompanyProfileModel() {
         this.createdDate = null;
@@ -37,6 +40,14 @@ public class CompanyProfileModel {
     //--------------------------------------------------------------------------
     // Setters
     //--------------------------------------------------------------------------
+    public void setContactPosition(String contactPosition) {
+        this.contactPosition = contactPosition;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -90,6 +101,14 @@ public class CompanyProfileModel {
     //--------------------------------------------------------------------------
     // Getters
     //--------------------------------------------------------------------------
+    public String getContactPosition() {
+        return contactPosition;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public String getPreferredCourse() {
         return preferredCourse;
     }
@@ -161,6 +180,9 @@ public class CompanyProfileModel {
                 csm.setCreatedDate(CompanyProfileModel.convertStorageStringToDate(row.getValue("created_date")));
                 csm.setLastModifiedBy(row.getValue("last_modified_by"));
                 csm.setLastModifiedDate(CompanyProfileModel.convertStorageStringToDate(row.getValue("last_modified_date")));
+                //
+                csm.setContactPosition(row.getValue("contact_position"));
+                csm.setDescription(row.getValue("description"));
                 // add entry
                 graduateRecords.add(csm);
             });
@@ -242,7 +264,7 @@ public class CompanyProfileModel {
      */
     public boolean insert() {
         SimpleQuery insertQuery = new SimpleQuery();
-        String query = "INSERT INTO `company_profile`(`name`,`preferred_course`,`address`,`email`,`contact_person`,`contact_number`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`) VALUES (?,?,?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO `company_profile`(`name`,`preferred_course`,`address`,`email`,`contact_person`,`contact_number`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`,contact_position,description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
         insertQuery.addStatementWithParameter(query,
                 this.name,
                 this.preferredCourse,
@@ -253,7 +275,10 @@ public class CompanyProfileModel {
                 this.createdBy,
                 this.convertDateToStorageString(this.createdDate),
                 this.lastModifiedBy,
-                this.convertDateToStorageString(this.lastModifiedDate)
+                this.convertDateToStorageString(this.lastModifiedDate),
+                // new
+                this.contactPosition,
+                this.description
         );
         try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
             con.update(insertQuery);
@@ -284,6 +309,9 @@ public class CompanyProfileModel {
                 .addStatementWithParameter("created_date = ?,", this.convertDateToStorageString(this.createdDate))
                 .addStatementWithParameter("last_modified_by = ?,", this.lastModifiedBy)
                 .addStatementWithParameter("last_modified_date = ?", this.convertDateToStorageString(this.lastModifiedDate))
+                // new
+                .addStatementWithParameter("contact_position = ?,", this.contactPosition)
+                .addStatementWithParameter("description = ?,", this.description)
                 // where clause
                 .addStatementWithParameter("WHERE _rowid_= ?;", this.id);
 

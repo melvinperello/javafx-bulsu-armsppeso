@@ -1,7 +1,7 @@
-package afterschoolcreatives.armsppeso.models;
+package org.afterschoolcreatives.armsppeso.models;
 
-import afterschoolcreatives.armsppeso.Context;
-import afterschoolcreatives.polaris.java.sql.ConnectionManager;
+import org.afterschoolcreatives.armsppeso.Context;
+import org.afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import java.sql.SQLException;
 
 /**

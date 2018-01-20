@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package afterschoolcreatives.armsppeso.ui;
+package org.afterschoolcreatives.armsppeso.ui;
 
-import afterschoolcreatives.armsppeso.ARMSPPESO;
-import afterschoolcreatives.armsppeso.Context;
-import afterschoolcreatives.armsppeso.models.UserAccountModel;
-import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
+import org.afterschoolcreatives.armsppeso.ARMSPPESO;
+import org.afterschoolcreatives.armsppeso.Context;
+import org.afterschoolcreatives.armsppeso.models.UserAccountModel;
+import org.afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

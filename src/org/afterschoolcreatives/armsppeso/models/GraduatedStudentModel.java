@@ -1,10 +1,10 @@
-package afterschoolcreatives.armsppeso.models;
+package org.afterschoolcreatives.armsppeso.models;
 
-import afterschoolcreatives.armsppeso.Context;
-import afterschoolcreatives.polaris.java.PolarisException;
-import afterschoolcreatives.polaris.java.sql.ConnectionManager;
-import afterschoolcreatives.polaris.java.sql.DataSet;
-import afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
+import org.afterschoolcreatives.armsppeso.Context;
+import org.afterschoolcreatives.polaris.java.PolarisException;
+import org.afterschoolcreatives.polaris.java.sql.ConnectionManager;
+import org.afterschoolcreatives.polaris.java.sql.DataSet;
+import org.afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;

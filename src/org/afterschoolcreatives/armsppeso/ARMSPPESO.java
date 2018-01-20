@@ -1,10 +1,10 @@
-package afterschoolcreatives.armsppeso;
+package org.afterschoolcreatives.armsppeso;
 
-import afterschoolcreatives.armsppeso.models.DatabaseTables;
+import org.afterschoolcreatives.armsppeso.models.DatabaseTables;
 import afterschoolcreatives.armsppeso.ui.LoginScreen;
 import afterschoolcreatives.armsppeso.ui.MainMenu;
 import afterschoolcreatives.armsppeso.ui.SplashScreen;
-import afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
+import org.afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
 import java.sql.SQLException;
 import java.util.Optional;
 import javafx.application.Application;

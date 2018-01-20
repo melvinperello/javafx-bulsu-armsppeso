@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package afterschoolcreatives.armsppeso.ui.useraccounts;
+package org.afterschoolcreatives.armsppeso.ui.useraccounts;
 
-import afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
+import org.afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

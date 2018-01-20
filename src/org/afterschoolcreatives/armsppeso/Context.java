@@ -1,8 +1,14 @@
 package org.afterschoolcreatives.armsppeso;
 
+import java.io.File;
+import java.io.IOException;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionFactory;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import org.afterschoolcreatives.polaris.java.io.FileTool;
 
 /**
  * A Class that manages the resources of the project.
@@ -120,4 +126,27 @@ public final class Context {
         this.accountType = accountType;
     }
 
+    //--------------------------------------------------------------------------
+    // Documents
+    //--------------------------------------------------------------------------
+    /**
+     * Upload a document.
+     *
+     * @param document
+     * @param savedFilename
+     * @return
+     */
+    public boolean uploadDocument(File document, String savedFilename) {
+        final String driveDirectory = "drive" + File.separator + "documents";
+        // check upload directory.
+        if (!FileTool.createDirectory(driveDirectory)) {
+            return false;
+        }
+        try {
+            //
+            return FileTool.copyChannel(document, new File(driveDirectory + File.separator + savedFilename));
+        } catch (IOException ex) {
+            return false;
+        }
+    }
 }

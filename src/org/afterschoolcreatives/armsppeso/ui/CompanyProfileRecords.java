@@ -2,18 +2,16 @@ package org.afterschoolcreatives.armsppeso.ui;
 
 import org.afterschoolcreatives.armsppeso.Context;
 import org.afterschoolcreatives.armsppeso.models.CompanyProfileModel;
-import org.afterschoolcreatives.armsppeso.models.GraduatedStudentModel;
 import org.afterschoolcreatives.polaris.java.util.StringTools;
 import org.afterschoolcreatives.polaris.javafx.fxml.PolarisFxController;
 import org.afterschoolcreatives.polaris.javafx.scene.control.PolarisDialog;
 import com.jfoenix.controls.JFXButton;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 
 /**
  *
@@ -255,6 +253,16 @@ public class CompanyProfileRecords extends PolarisFxController {
                 this.showWarningMessage("Failed to Delete Record.");
             }
             click.consume();
+        });
+
+        /**
+         * Document Upload
+         */
+        this.btn_check_documents.setOnMouseClicked(value -> {
+            FileChooser chooser = new FileChooser();
+            File doc = chooser.showOpenDialog(this.getStage());
+            Context.app().uploadDocument(doc, "sample.pdf");
+            value.consume();
         });
 
         /**

@@ -298,6 +298,7 @@ public class UserAccounts extends PolarisFxController {
             this.txt_password_confirm.setText(account.getPassword());
             this.txt_password_confirm.setDisable(true);
             this.txt_username.setText(account.getUsername());
+            this.cmb_account_type.getSelectionModel().select(account.getAccount_type());
             if(account.getCreatedDate()!=null) {
                 this.lbl_created.setText(account.getCreatedDate() + " by " + account.getCreatedBy());
             } else {

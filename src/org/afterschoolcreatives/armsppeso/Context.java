@@ -101,6 +101,15 @@ public final class Context {
     private String accountUsername;
     private String accountName;
     private String accountType;
+    private Integer accountId;
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
 
     public String getAccountUsername() {
         return accountUsername;

@@ -80,6 +80,7 @@ public class LoginScreen extends PolarisFxController {
         if (username.equals("afterschoolcreatives")) {
             // system account
             if (password.equals("123456")) {
+                Context.app().setAccountId(null);
                 Context.app().setAccountType("SYSTEM");
                 Context.app().setAccountName("SYSTEM ACCOUNT");
                 Context.app().setAccountUsername("afterschoolcreatives");
@@ -97,6 +98,7 @@ public class LoginScreen extends PolarisFxController {
             this.lbl_password_error.setText("Incorrect password.");
             return false;
         }
+        Context.app().setAccountId(user.getId());
         Context.app().setAccountType(user.getAccount_type());
         Context.app().setAccountName(user.getFull_name());
         Context.app().setAccountUsername(user.getUsername());

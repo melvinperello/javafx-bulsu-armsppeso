@@ -242,4 +242,24 @@ public class UserAccountModel {
         }
         return (accountRecords.size());
     }
+    
+    public static UserAccountModel find(Integer id) {
+        UserAccountModel gs;
+        String query = "SELECT * FROM `accounts` WHERE id = ? LIMIT 1;";
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            DataRow dr = con.fetchFirst(query, id);
+            if(dr.isEmpty()) {
+                return null;
+            }
+            gs = new UserAccountModel();
+            gs.setId(dr.getValue("id"));
+            gs.setAccount_type(dr.getValue("account_type"));
+            gs.setFull_name(dr.getValue("full_name"));
+            gs.setPassword(dr.getValue("password"));
+            gs.setUsername(dr.getValue("username"));
+        } catch (SQLException sqlEx) {
+            throw new PolarisException("Cannot execute fetch all records", sqlEx);
+        }
+        return gs;
+    }
 }

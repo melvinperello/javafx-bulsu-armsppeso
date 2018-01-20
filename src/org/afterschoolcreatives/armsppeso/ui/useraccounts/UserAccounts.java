@@ -266,17 +266,8 @@ public class UserAccounts extends PolarisFxController {
         userRow.load();
         //informations
         userRow.getLbl_created_by().setText(account.getCreatedBy());
-<<<<<<< HEAD:src/afterschoolcreatives/armsppeso/ui/useraccounts/UserAccounts.java
         if(account.getCreatedDate() != null) {
-            userRow.getLbl_date().setText(account.getCreatedDate());
-||||||| merged common ancestors
-        if(account.getCreatedDate() != null) {
-            userRow.getLbl_date().setText(Context.app().getStandardDateFormat().format(account.getCreatedDate().getTime()));
-=======
-        if (account.getCreatedDate() != null) {
-            userRow.getLbl_date().setText(Context.app().getStandardDateFormat().format(account.getCreatedDate().getTime()));
->>>>>>> c4c5067c37f4ef07c9d30ef90b00039f5f1829c3:src/org/afterschoolcreatives/armsppeso/ui/useraccounts/UserAccounts.java
-        } else {
+            userRow.getLbl_date().setText(account.getCreatedDate());} else {
             userRow.getLbl_date().setText("");
         }
         userRow.getLbl_full_name().setText(account.getFull_name());
@@ -304,16 +295,8 @@ public class UserAccounts extends PolarisFxController {
             this.txt_password_confirm.setText(account.getPassword());
             this.txt_password_confirm.setDisable(true);
             this.txt_username.setText(account.getUsername());
-<<<<<<< HEAD:src/afterschoolcreatives/armsppeso/ui/useraccounts/UserAccounts.java
             if(account.getCreatedDate()!=null) {
                 this.lbl_created.setText(account.getCreatedDate() + " by " + account.getCreatedBy());
-||||||| merged common ancestors
-            if(account.getCreatedDate()!=null) {
-                this.lbl_created.setText(Context.app().getStandardDateFormat().format(account.getCreatedDate().getTime()) + " by " + account.getCreatedBy());
-=======
-            if (account.getCreatedDate() != null) {
-                this.lbl_created.setText(Context.app().getStandardDateFormat().format(account.getCreatedDate().getTime()) + " by " + account.getCreatedBy());
->>>>>>> c4c5067c37f4ef07c9d30ef90b00039f5f1829c3:src/org/afterschoolcreatives/armsppeso/ui/useraccounts/UserAccounts.java
             } else {
                 this.lbl_created.setText("UNKNOWN");
             }

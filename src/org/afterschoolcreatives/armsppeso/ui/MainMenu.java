@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.afterschoolcreatives.armsppeso.models.InquiryModel;
 
 /**
  *
@@ -73,6 +74,12 @@ public class MainMenu extends PolarisFxController {
             value.consume();
         });
 
+        this.btn_manage_inquiries.setOnMouseClicked(value -> {
+            InquiryRecords ir = new InquiryRecords();
+            this.changeRoot(ir.load());
+            value.consume();
+        });
+
         this.btn_change_password.setOnMouseClicked(value -> {
             ChangePassword cp = new ChangePassword();
             this.changeRoot(cp.load());
@@ -94,10 +101,9 @@ public class MainMenu extends PolarisFxController {
      * Counts the records from the tables.
      */
     private void countRecords() {
-
         this.lblStudentCount.setText(GraduatedStudentModel.getTotalRecords());
         this.lblProfileCount.setText(CompanyProfileModel.getTotalRecords());
-
+        this.lbl_inquiry_count.setText(InquiryModel.getTotalRecords());
     }
 
     /**

@@ -6,7 +6,9 @@
 package org.afterschoolcreatives.armsppeso.models;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.afterschoolcreatives.armsppeso.Context;
+import org.afterschoolcreatives.polaris.java.PolarisException;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import org.afterschoolcreatives.polaris.java.sql.DataSet;
 import org.afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
@@ -172,7 +174,101 @@ public class InquiryModel {
             return "0";
         }
     }
-    
-    
+
+    /**
+     * Retrieves all the records.
+     *
+     * @return
+     */
+    public static ArrayList<InquiryModel> getAllRecords() {
+        ArrayList<InquiryModel> inquiryRecords = new ArrayList<>();
+        String query = "SELECT * FROM `inquiry` ORDER BY `_rowid_` DESC;";
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            DataSet ds = con.fetch(query);
+            ds.forEach(row -> {
+                InquiryModel im = new InquiryModel();
+                im.setId(row.getValue("id"));
+                im.setName(row.getValue("name"));
+                im.setRepresentative(row.getValue("representative"));
+                im.setAddress(row.getValue("address"));
+                im.setContact(row.getValue("contact"));
+                im.setDescription(row.getValue("description"));
+                im.setConcern(row.getValue("concern"));
+                //
+                im.setCreatedBy(row.getValue("created_by"));
+                im.setCreatedDate(row.getValue("created_date"));
+                im.setLastModifiedBy(row.getValue("last_modified_by"));
+                im.setLastModifiedDate(row.getValue("last_modified_date"));
+                inquiryRecords.add(im);
+            });
+        } catch (SQLException sqlEx) {
+            throw new PolarisException("Cannot execute fetch all records", sqlEx);
+        }
+        return inquiryRecords;
+    }
+
+    //--------------------------------------------------------------------------
+    // Class Methods.
+    //--------------------------------------------------------------------------
+    /**
+     * Inserts a new Record.
+     *
+     * @return true or false
+     */
+    public boolean insert() {
+        SimpleQuery insertQuery = new SimpleQuery();
+        String query = "INSERT INTO `inquiry`(`name`,`representative`,`address`,`contact`,`description`,`concern`,`created_by`,`created_date`,`last_modified_by`,`last_modified_date`) VALUES (?,?,?,?,?,?,?,?,?,?);";
+        insertQuery.addStatementWithParameter(query,
+                this.name,
+                this.representative,
+                this.address,
+                this.contact,
+                this.description,
+                this.concern,
+                this.createdBy,
+                this.createdDate,
+                this.lastModifiedBy,
+                this.lastModifiedDate
+        );
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            con.update(insertQuery);
+            return true;
+        } catch (SQLException sqlEx) {
+            return false;
+        }
+    }
+
+    /**
+     * Update entries of the the table.
+     *
+     * @return
+     */
+    public boolean update() {
+        SimpleQuery updateQuery = new SimpleQuery();
+        updateQuery.addStatement("UPDATE") // operation
+                .addStatement("inquiry") // table
+                // fields here
+                .addStatement("SET")
+                .addStatementWithParameter("name = ?,", this.name)
+                .addStatementWithParameter("representative = ?,", this.representative)
+                .addStatementWithParameter("address = ?,", this.address)
+                .addStatementWithParameter("contact = ?,", this.contact)
+                .addStatementWithParameter("description = ?,", this.description)
+                .addStatementWithParameter("concern = ?,", this.concern)
+                //
+                .addStatementWithParameter("created_by = ?,", this.createdBy)
+                .addStatementWithParameter("created_date = ?,", this.createdDate)
+                .addStatementWithParameter("last_modified_by = ?,", this.lastModifiedBy)
+                .addStatementWithParameter("last_modified_date = ?", this.lastModifiedDate)
+                // where clause
+                .addStatementWithParameter("WHERE _rowid_= ?;", this.id);
+
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            con.update(updateQuery);
+            return true;
+        } catch (SQLException sqlEx) {
+            return false;
+        }
+    }
 
 }

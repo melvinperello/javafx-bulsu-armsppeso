@@ -167,7 +167,7 @@
                   </VBox>
                   <VBox spacing="7.0" VBox.vgrow="NEVER">
                      <children>
-                        <JFXButton fx:id="btn_open" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-style: dashed;" text="Open Document">
+                        <JFXButton fx:id="btn_upload" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-style: dashed;" text="Upload Document">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -175,7 +175,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton fx:id="btn_upload" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-style: dashed;" text="Upload Document">
+                        <JFXButton fx:id="btn_open" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-style: dashed;" text="Open Document">
                            <font>
                               <Font size="14.0" />
                            </font>

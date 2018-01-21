@@ -110,6 +110,12 @@ public class GraduateStudentRecords extends PolarisFxController {
      */
     @Override
     protected void setup() {
+        if (this.loggedUserType.equalsIgnoreCase("USER")) {
+            this.btn_add_record.setDisable(true);
+            this.btn_delete_record.setDisable(true);
+            this.btn_update_record.setDisable(true);
+        }
+
         this.createTable();
         this.populateTable(); //refresh
 

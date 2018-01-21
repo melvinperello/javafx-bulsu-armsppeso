@@ -14,7 +14,14 @@ import org.afterschoolcreatives.polaris.java.io.FileTool;
  */
 public final class Context {
 
+    /**
+     * Main Drive of the system.
+     */
     public final static String DATA_DRIVE = "disk_drive";
+    /**
+     * Documents Folder of this computer.
+     */
+    public final static String DOC_DRIVE = Context.DATA_DRIVE + File.separator + "documents";
 
     /**
      * Application Context Instance.
@@ -145,14 +152,14 @@ public final class Context {
      * @return
      */
     public boolean uploadDocument(File document, String savedFilename) {
-        final String driveDirectory = Context.DATA_DRIVE + File.separator + "documents";
+
         // check upload directory.
-        if (!FileTool.createDirectory(driveDirectory)) {
+        if (!FileTool.createDirectory(Context.DOC_DRIVE)) {
             return false;
         }
         try {
             //
-            return FileTool.copyChannel(document, new File(driveDirectory + File.separator + savedFilename));
+            return FileTool.copyChannel(document, new File(Context.DOC_DRIVE + File.separator + savedFilename));
         } catch (IOException ex) {
             return false;
         }

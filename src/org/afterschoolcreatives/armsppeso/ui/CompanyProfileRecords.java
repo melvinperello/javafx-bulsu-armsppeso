@@ -90,7 +90,7 @@ public class CompanyProfileRecords extends PolarisFxController {
     public CompanyProfileRecords() {
         this.tableData = FXCollections.observableArrayList();
         this.loggedUser = Context.app().getAccountName();
-        this.loggedUserType = Context.app().getAccountUsername();
+        this.loggedUserType = Context.app().getAccountType();
     }
 
     /**
@@ -160,6 +160,12 @@ public class CompanyProfileRecords extends PolarisFxController {
 
     @Override
     protected void setup() {
+
+        if (this.loggedUserType.equalsIgnoreCase("USER")) {
+            this.btn_add_record.setDisable(true);
+            this.btn_delete_record.setDisable(true);
+            this.btn_update_record.setDisable(true);
+        }
 
         this.createTable(); // create table with predicate
         this.populateTable(); //refresh

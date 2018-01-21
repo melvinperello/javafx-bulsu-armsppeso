@@ -211,7 +211,17 @@ public class CompanyProfileModel {
         }
     }
 
-    /**
+    /*        SimpleQuery deleteQuery = new SimpleQuery();
+        String query = "DELETE FROM `company_profile` WHERE `_rowid_` IN (?);";
+        deleteQuery.addStatementWithParameter(query, id);
+        try (ConnectionManager con = Context.app().getConnectionFactory().createConnectionManager()) {
+            con.update(deleteQuery);
+            return true;
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+            return false;
+        }
+    }*
      * Get the total number of records.
      *
      * @return

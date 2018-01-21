@@ -99,6 +99,8 @@ public class UserAccounts extends PolarisFxController {
     protected void setup() {
         this.resetLabelMessages();
         this.vbox_message.setVisible(false);
+        // enable upon start
+        this.btn_back_to_add.setDisable(true);
 
         // fetch and create table of accounts
         ArrayList<UserAccountModel> allRecords = UserAccountModel.getAllRecords();

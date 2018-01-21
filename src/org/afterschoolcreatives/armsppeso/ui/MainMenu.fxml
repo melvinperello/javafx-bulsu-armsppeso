@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: #F5F6F8;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
          <children>
@@ -68,9 +68,9 @@
       </HBox>
       <HBox spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Graduate Verification">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #414852; -fx-border-style: dashed;" text="Graduate Verification" textFill="WHITE">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -105,7 +105,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btnManageStudents" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #FBF3C5; -fx-border-style: dashed;" text="Verify Graduate">
+                  <JFXButton fx:id="btnManageStudents" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #414852; -fx-border-style: dashed;" text="Verify Graduate" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -121,9 +121,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #C2FDBC; -fx-border-style: dashed;" text="Company Profile">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #414852; -fx-border-style: dashed;" text="Company Profile" textFill="WHITE">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -158,7 +158,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btnManageProfiles" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #C2FDBC; -fx-border-style: dashed;" text="Manage Profiles">
+                  <JFXButton fx:id="btnManageProfiles" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #414852; -fx-border-style: dashed;" text="Manage Profiles" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -177,9 +177,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0" style="-fx-background-color: white;">
+            <VBox alignment="CENTER" prefHeight="700.0" prefWidth="497.0">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Inquiry">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #414852; -fx-border-style: dashed;" text="Inquiry" textFill="WHITE">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -214,7 +214,7 @@
                         <Insets top="-20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton fx:id="btn_manage_inquiries" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #B6E4FB; -fx-border-style: dashed;" text="Manage Inquiries">
+                  <JFXButton fx:id="btn_manage_inquiries" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #414852; -fx-border-style: dashed;" text="Manage Inquiries" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -264,12 +264,12 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <JFXButton fx:id="btn_useraccounts" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #B6E4FB;" text="User Accounts">
+                  <JFXButton fx:id="btn_useraccounts" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #414852; -fx-border-color: white;" text="User Accounts" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btn_change_password" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #B6E4FB;" text="Change Password">
+                  <JFXButton fx:id="btn_change_password" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: #414852; -fx-border-color: white;" text="Change Password" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

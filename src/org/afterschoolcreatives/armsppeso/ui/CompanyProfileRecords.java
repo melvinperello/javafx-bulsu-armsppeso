@@ -198,7 +198,7 @@ public class CompanyProfileRecords extends PolarisFxController {
                     this.showInformationMessage("Successfully added a new Record.");
                     this.clearFields();
                 } else {
-                    this.showWarningMessage("Failed to Update Record.");
+                    this.showWarningMessage("Failed to Insert Record.");
                 }
 
             }

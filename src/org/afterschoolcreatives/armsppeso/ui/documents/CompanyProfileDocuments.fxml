@@ -16,21 +16,21 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: FFFFFF;" stylesheets="@../main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="20.0" style="-fx-background-color: #FFC9C9;">
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="20.0" style="-fx-background-color: #414852;">
          <children>
             <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../res/drawable/documents.png" />
                </image>
             </ImageView>
-            <Label maxWidth="1.7976931348623157E308" text="Documents" HBox.hgrow="ALWAYS">
+            <Label maxWidth="1.7976931348623157E308" text="Documents" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <JFXButton fx:id="btn_main_from_student" prefWidth="200.0" style="-fx-border-color: black; -fx-border-style: dashed;" text="Back">
+                  <JFXButton fx:id="btn_main_from_student" prefWidth="200.0" style="-fx-border-color: white; -fx-border-style: dashed;" text="Back" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -183,7 +183,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton fx:id="btn_delete_record" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #FFC9C9; -fx-border-style: dashed;" text="Delete Document">
+                        <JFXButton fx:id="btn_delete_record" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-background-color: #F76C83; -fx-border-style: dashed;" text="Delete Document" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>

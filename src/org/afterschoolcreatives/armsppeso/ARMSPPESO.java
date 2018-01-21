@@ -39,6 +39,7 @@ public class ARMSPPESO extends Application {
         splashStage.initModality(Modality.APPLICATION_MODAL);
         splashStage.initStyle(StageStyle.UNDECORATED);
         splashStage.setResizable(false);
+        splashStage.getIcons().add(Context.app().getDrawableImage("ac_icon.png"));
         splashStage.setScene(splashScene);
         splashStage.centerOnScreen();
         splashStage.show();

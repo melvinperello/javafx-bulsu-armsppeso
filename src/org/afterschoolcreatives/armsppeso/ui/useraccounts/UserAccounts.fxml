@@ -16,19 +16,19 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="10.0" style="-fx-background-color: #5DC8FF;">
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="10.0" style="-fx-background-color: #414852;">
          <children>
             <ImageView fitHeight="46.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../res/drawable/icons8-customer-filled-100.png" />
                </image>
             </ImageView>
-            <Label maxWidth="1.7976931348623157E308" text="User Accounts" textFill="#5d5d5e" HBox.hgrow="ALWAYS">
+            <Label maxWidth="1.7976931348623157E308" text="User Accounts" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btn_back" prefWidth="200.0" style="-fx-border-color: black; -fx-border-style: dashed;" text="Main Menu" textFill="#606061">
+            <JFXButton fx:id="btn_back" prefWidth="200.0" style="-fx-border-color: white; -fx-border-style: dashed;" text="Main Menu" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -242,7 +242,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton fx:id="btn_back_to_add" layoutX="10.0" layoutY="214.0" prefHeight="40.0" prefWidth="344.0" style="-fx-border-color: #767677; -fx-border-style: dashed;" text="Back to Add Account" textFill="#505051">
+                        <JFXButton fx:id="btn_back_to_add" layoutX="10.0" layoutY="214.0" prefHeight="40.0" prefWidth="344.0" style="-fx-border-color: #767677; -fx-border-style: dashed;" text="Cancel Edit" textFill="#505051">
                            <font>
                               <Font size="18.0" />
                            </font>

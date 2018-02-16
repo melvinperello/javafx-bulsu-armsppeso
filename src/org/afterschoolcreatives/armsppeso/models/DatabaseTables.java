@@ -27,11 +27,11 @@
  */
 package org.afterschoolcreatives.armsppeso.models;
 
+import java.io.File;
 import org.afterschoolcreatives.armsppeso.Context;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import java.sql.SQLException;
 import org.afterschoolcreatives.polaris.java.io.FileTool;
-import org.sqlite.SQLiteException;
 
 /**
  *
@@ -133,7 +133,7 @@ public class DatabaseTables {
      * @throws java.sql.SQLException
      */
     public static void create() throws SQLException {
-        if (FileTool.createDirectory(Context.DATA_DRIVE)) {
+        if (FileTool.checkFoldersQuietly(Context.DATA_DRIVE)) {
             // build connection
             try (ConnectionManager con = Context.app().getConnectionFactory()
                     .createConnectionManager()) {
@@ -147,5 +147,5 @@ public class DatabaseTables {
             throw new RuntimeException("Cannot Create Drive Directory");
         }
     }
-
+    
 }

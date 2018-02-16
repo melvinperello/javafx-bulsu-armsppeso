@@ -29,6 +29,8 @@ package org.afterschoolcreatives.armsppeso;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionFactory;
 import java.text.SimpleDateFormat;
 import javafx.scene.image.Image;
@@ -135,35 +137,35 @@ public final class Context {
     private String accountName;
     private String accountType;
     private Integer accountId;
-
+    
     public Integer getAccountId() {
         return accountId;
     }
-
+    
     public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
-
+    
     public String getAccountUsername() {
         return accountUsername;
     }
-
+    
     public void setAccountUsername(String accountUsername) {
         this.accountUsername = accountUsername;
     }
-
+    
     public String getAccountName() {
         return accountName;
     }
-
+    
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
-
+    
     public String getAccountType() {
         return accountType;
     }
-
+    
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
@@ -179,14 +181,13 @@ public final class Context {
      * @return
      */
     public boolean uploadDocument(File document, String savedFilename) {
-
         // check upload directory.
-        if (!FileTool.createDirectory(Context.DOC_DRIVE)) {
+        if (FileTool.checkFoldersQuietly(Context.DOC_DRIVE)) {
             return false;
         }
         try {
             //
-            return FileTool.copyChannel(document, new File(Context.DOC_DRIVE + File.separator + savedFilename));
+            return FileTool.copy(document, new File(Context.DOC_DRIVE + File.separator + savedFilename));
         } catch (IOException ex) {
             return false;
         }

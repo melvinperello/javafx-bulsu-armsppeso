@@ -29,8 +29,10 @@ package org.afterschoolcreatives.armsppeso.models;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import org.afterschoolcreatives.armsppeso.Context;
-import org.afterschoolcreatives.polaris.java.PolarisException;
+import org.afterschoolcreatives.polaris.java.exceptions.PolarisRuntimeException;
+//import org.afterschoolcreatives.polaris.java.PolarisException;
 import org.afterschoolcreatives.polaris.java.sql.ConnectionManager;
 import org.afterschoolcreatives.polaris.java.sql.DataSet;
 import org.afterschoolcreatives.polaris.java.sql.builder.SimpleQuery;
@@ -164,7 +166,7 @@ public class CompanyProfileDocumentModel {
                 companyDocuments.add(cpd);
             });
         } catch (SQLException sqlEx) {
-            throw new PolarisException("Cannot execute fetch all records", sqlEx);
+            throw new PolarisRuntimeException("Cannot execute fetch all records", sqlEx);
         }
         return companyDocuments;
     }

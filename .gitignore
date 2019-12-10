@@ -6,3 +6,8 @@
 /disk_drive/
 src/res/drawable/Thumbs.db
 Thumbs.db
+/target/
+/local-repo/
+.classpath
+.project
+/.settings/
